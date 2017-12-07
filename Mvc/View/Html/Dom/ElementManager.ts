@@ -1,7 +1,7 @@
-export class Events
+export class ElementManager
 {
     public constructor()
     {
-        
+
     }
 }
