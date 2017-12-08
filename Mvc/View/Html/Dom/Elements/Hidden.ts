@@ -1,4 +1,5 @@
-///<reference path="../Component.ts"/>
+import { Service } from "../../../../../Di/Service"; 
+import { Input } from "./Input";
 
 namespace Northwind.Tag
 {
@@ -6,12 +7,12 @@ namespace Northwind.Tag
      * [Input description]
      * @type {[type]}
      */
-    export class Hidden extends Northwind.Tag.Input
+    export class Hidden extends Input
     {
-    	public constructor()
+    	public constructor(args : any = {})
     	{
     		super();
-    		this.setHidden();
+            this.setHidden();
     	}
     }
 }

@@ -1,20 +1,22 @@
-///<reference path="../Component.ts"/>
+import { HtmlElement } from "../Wrappers/HtmlElement";
 
-namespace Northwind.Tag {
+/**
+ * [ViewElement description]
+ * @type {[type]}
+ */
+export class Blockquote extends HtmlElement
+{
     /**
-     * [ViewElement description]
-     * @type {[type]}
+     *
      */
-    export class Blockquote extends Northwind.Html.Component
+    public constructor(args? : {})
     {
-        /**
-         *
-         */
-        public constructor()
-        {
-            super("BLOCKQUOTE");
-            
-            this.initialize();
-        }
+        super();
+        this.setElement(
+            document.createElement(
+                "BLOCKQUOTE"
+            )
+        );
+        this.initialize(args);
     }
 }

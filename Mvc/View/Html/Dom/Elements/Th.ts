@@ -1,20 +1,25 @@
-///<reference path="../Component.ts"/>
+import { Service } from "../../../../../Di/Service"; import { HtmlElement } from "../Wrappers/HtmlElement";
 
-namespace Northwind.Tag {
+
     /**
      * [ViewElement description]
      * @type {[type]}
      */
-    export class Th extends Northwind.Html.Component
+    export class Th extends HtmlElement
     {
         /**
          *
          */
-        public constructor()
+        public constructor(args : any = {})
         {
-            super("TH");
-            
-            this.initialize();
+            super();
+            this.setElement(
+                document.createElement(
+                    "TH"
+                )
+            );
+            this.setDi(new Service);
+            this.initialize(args);
         }
 
         /*

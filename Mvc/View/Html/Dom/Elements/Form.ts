@@ -1,124 +1,116 @@
-///<reference path="../Component.ts"/>
+import { Service }        from "../../../../../Di/Service";
+import { HtmlElement }    from "../Wrappers/HtmlElement";
+import { ElementAdapter } from "../Adapter/ElementAdapter"; 
 
-/*
-function ValidationDecorator<TFunction extends Function>(target: TFunction): TFunction {
-    Object.defineProperty(target.prototype, 'test', {
-        value: function() {
-            console.log('test call');
-            return 'test result';
-        }
-    });
-    return target;
-}
-*/
-
-namespace Northwind.Tag
+/**
+ * 
+ * @type 
+ */
+export class Form extends HtmlElement
 {
     /**
-     * 
-     * @type 
+     *
      */
-    export class Form extends Northwind.Html.Component
+    private invalidElements = new Array;
+
+    /**
+     * 
+     */
+    public constructor(args : any = {})
     {
-        /**
-         *
-         */
-        private invalidElements = new Array;
+        super();
+        this.setElement(
+            document.createElement(
+                "FORM"
+            )
+        );
+        this.setDi(new Service);
+        this.initialize(args);
+    }
 
-        /**
-         * 
-         */
-        public constructor()
-        {
-            super("FORM");
-            
-            this.initialize();
-        }
-
-        /**
-         * @param {Function} fn
-         */
-        public submit(fn : Function)
-        {
-            this.getElement().addEventListener("submit", function (event) {
-                let returnCallback = fn.bind(this)(event);
-                if (returnCallback == false || typeof returnCallback == "undefined") {
-                    event.preventDefault();
-                }
-                return true;
-            }.bind(this));
-        }
-
-        /**
-         * 
-         */
-        public getInvalidElements()
-        {
-            return this.invalidElements;
-        }
-
-        /**
-         * 
-         */
-        public validate(fn : Function)
-        {
-            let elements = this.getFormElements();
-            this.invalidElements = new Array;
-            if (elements.length > 0) {
-                for (let item of elements) {
-                    if (item.val() == "") {
-                        this.invalidElements.push(
-                            item
-                        );
-                    }
-                }
-                if (this.invalidElements.length == 0) {
-                    return true;
-                } else {
-                    return false;
-                }
+    /**
+     * @param {Function} fn
+     */
+    public submit(fn : Function)
+    {
+        this.getElement().addEventListener("submit", function (event) {
+            let returnCallback = fn.bind(this)(event);
+            if (returnCallback == false || typeof returnCallback == "undefined") {
+                event.preventDefault();
             }
-            return false;
-        }
+            return true;
+        }.bind(this));
+    }
 
-        /**
-         * 
-         */
-        public getFormElements()
-        {
-            let northwindElements = new Array;
-            let elements = this.element.elements;
+    /**
+     * 
+     */
+    public getInvalidElements()
+    {
+        return this.invalidElements;
+    }
+
+    /**
+     * 
+     */
+    public validate(fn : Function)
+    {
+        let elements = this.getFormElements();
+        this.invalidElements = new Array;
+        if (elements.length > 0) {
             for (let item of elements) {
-                let aux = new Northwind.Tag.TagAdapter(item);
-                let element = aux.get();
-                if (element != false) {
-                    northwindElements.push(
-                        element
+                if (item.val() == "") {
+                    this.invalidElements.push(
+                        item
                     );
                 }
             }
-            return northwindElements;
-        }
-
-        /**
-         * 
-         */
-        public setAutoComplete(data : Boolean)
-        {
-            if (data) {
-                this.attr("autocomplete", "on");
+            if (this.invalidElements.length == 0) {
+                return true;
             } else {
-                this.attr("autocomplete", "off");
+                return false;
             }
-            return this;
         }
+        return false;
+    }
 
-        /**
-         * 
-         */
-        public getAutoComplete()
-        {
-            return this.attr("autocomplete");
+    /**
+     * 
+     */
+    public getFormElements()
+    {
+        let northwindElements = new Array;
+        let elements = this.getElement().elements;
+        for (let item of elements) {
+            let aux = new ElementAdapter(item);
+            let element = aux.get();
+            if (element != false) {
+                northwindElements.push(
+                    element
+                );
+            }
         }
+        return northwindElements;
+    }
+
+    /**
+     * 
+     */
+    public setAutoComplete(data : Boolean)
+    {
+        if (data) {
+            this.attr("autocomplete", "on");
+        } else {
+            this.attr("autocomplete", "off");
+        }
+        return this;
+    }
+
+    /**
+     * 
+     */
+    public getAutoComplete()
+    {
+        return this.attr("autocomplete");
     }
 }

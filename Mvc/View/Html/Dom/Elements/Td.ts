@@ -1,45 +1,49 @@
-///<reference path="../Component.ts"/>
+import { Service } from "../../../../../Di/Service";
+import { HtmlElement } from "../Wrappers/HtmlElement";
 
-namespace Northwind.Tag {
+/**
+ * [ViewElement description]
+ * @type {[type]}
+ */
+export class Td extends HtmlElement
+{
     /**
-     * [ViewElement description]
-     * @type {[type]}
+     *
      */
-    export class Td extends Northwind.Html.Component
+    public constructor(args : any = {})
     {
-        /**
-         *
-         */
-        public constructor()
-        {
-            super("TD");
-            
-            this.initialize();
-        }
+        super();
+        this.setElement(
+            document.createElement(
+                "TD"
+            )
+        );
+        this.setDi(new Service);
+        this.initialize(args);
+    }
 
-        /**
-         *
-         * @param  {[type]} num [description]
-         * @return {[type]}     [description]
-         */
-        public colspan(cols)
-        {
-            this.attr({
-                "colspan" : cols
-            });
-            return this;
-        }
+    /**
+     *
+     * @param  {[type]} num [description]
+     * @return {[type]}     [description]
+     */
+    public colspan(cols)
+    {
+        this.attr({
+            "colspan" : cols
+        });
+        return this;
+    }
 
-         /** no pedi las hamburguesas soy un mk acompalene a comprar
-         * @param  {[type]} row [description]
-         * @return {[type]}     [description]
-         */
-        public rowspan(rows)
-        {
-            this.attr({
-                "rowspan" : rows
-            });
-            return this;
-        }
+        /** no pedi las hamburguesas soy un mk acompalene a comprar
+     * @param  {[type]} row [description]
+     * @return {[type]}     [description]
+     */
+    public rowspan(rows)
+    {
+        this.attr({
+            "rowspan" : rows
+        });
+        return this;
     }
 }

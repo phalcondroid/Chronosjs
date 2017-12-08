@@ -1,20 +1,22 @@
-///<reference path="../Component.ts"/>
+import { HtmlElement } from "../Wrappers/HtmlElement";
 
-namespace Northwind.Tag {
+/**
+ * [ViewElement description]
+ * @type {[type]}
+ */
+export class Aside extends HtmlElement
+{
     /**
-     * [ViewElement description]
-     * @type {[type]}
+     *
      */
-    export class Aside extends Northwind.Html.Component
+    public constructor(args : any = {})
     {
-        /**
-         *
-         */
-        public constructor()
-        {
-            super("ASIDE");
-            
-            this.initialize();
-        }
+        super();
+        this.setElement(
+            document.createElement(
+                "ASIDE"
+            )
+        );
+
     }
 }

@@ -1,6 +1,8 @@
-///<reference path="./Factory/TagAdapter.ts"/>
 
-export class Dom
+import { ElementInterface } from "./ElementInterface";
+import { ElementAdapter } from "./Adapter/ElementAdapter";
+
+export class DomManager implements ElementInterface
 {
     /**
      * 
@@ -11,10 +13,8 @@ export class Dom
      * 
      * @param element
      */
-    public constructor(element = null)
+    public constructor()
     {
-        if (element != null)
-            this.element = element;
     }
 
     /**
@@ -23,7 +23,7 @@ export class Dom
      */
     public getById(id : string, context = null)
     {
-        let adapter = new Northwind.Tag.TagAdapter(
+        let adapter = new ElementAdapter(
             document.getElementById(id)
         );
         return adapter.get();
@@ -40,7 +40,7 @@ export class Dom
         let result = new Array();
         for (let key in elements) {
             if (typeof elements[key].nodeName == "string") {
-                let adapter = new Northwind.Tag.TagAdapter(
+                let adapter = new ElementAdapter(
                     elements[key]
                 );
                 result.push(
@@ -64,13 +64,13 @@ export class Dom
      */
     public getByClass(name : string, context = null)
     {
-        var elements = document.getElementsByClassName(
+        let elements = document.getElementsByClassName(
             name
         );
-        var result = new Array();
+        let result = new Array();
         for (let key in elements) {
             if (typeof elements[key].nodeName == "string") {
-                let adapter = new Northwind.Tag.TagAdapter(
+                let adapter = new ElementAdapter(
                     elements[key]
                 );
                 result.push(
@@ -98,7 +98,7 @@ export class Dom
         let result = new Array();
         for (let key in elements) {
             if (typeof elements[key].nodeName == "string") {
-                let adapter = new Northwind.Tag.TagAdapter(
+                let adapter = new ElementAdapter(
                     elements[key]
                 );
                 result.push(
@@ -106,11 +106,9 @@ export class Dom
                 );
             }
         }
-
         if (result.length == 0) {
             return false;
         }
-
         if (result.length == 1) {
             return result[0];
         }
@@ -120,18 +118,18 @@ export class Dom
     /**
      * 
      */
-    public getElement()
+    public setElement(element)
     {
-        return this.element;
+        this.element = element;
+        return this;
     }
 
     /**
      * 
-     * @param element 
      */
-    public setElement(element)
+    public getElement()
     {
-        this.element = element;
+        return this.element;
     }
 
     /**

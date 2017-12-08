@@ -1,4 +1,5 @@
 import { Reflection } from "./Reflection";
+
 export class Checksum
 {
     /**

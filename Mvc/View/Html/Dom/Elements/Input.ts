@@ -1,103 +1,87 @@
-///<reference path="../Component.ts"/>
-///<reference path="./forms/FormTag.ts"/>
+import { Service } from "../../../../../Di/Service";
+import { HtmlElement } from "../Wrappers/HtmlElement";
+import { FormTag } from "./forms/FormTag";
 
-namespace Northwind.Tag
+/**
+ * 
+ * @type 
+ */
+export class Input extends FormTag
 {
+    public static NUMBERS = 0;
+    public static TEXT = 1;
+    public static NO_SPECIAL_CHARACTERS = 2;
+    public static TEXT_NO_SPECIAL_CHARACTERS = 3;
+    public static NUMBERS_NO_SPECIAL_CHARACTERS = 4;
+
     /**
      * 
-     * @type 
      */
-    export class Input extends Northwind.Tag.FormTag
+    public constructor(args : any = {})
     {
-        public static NUMBERS = 0;
-        public static TEXT = 1;
-        public static NO_SPECIAL_CHARACTERS = 2;
-        public static TEXT_NO_SPECIAL_CHARACTERS = 3;
-        public static NUMBERS_NO_SPECIAL_CHARACTERS = 4;
+        super();
+        this.setElement(
+            document.createElement(
+                "INPUT"
+            )
+        );
+        this.setDi(new Service);
+        this.initialize(args);
+    }
+    
+    /**
+     * [type description]
+     * @param  {[type]} type [description]
+     * @return {[type]}      [description]
+     */
+    public type(type)
+    {
+        this.attr("type", type);
+        return this;
+    }
 
-        /**
-         * 
-         */
-        public constructor()
-        {
-            super("INPUT");
-            
-            this.initialize();
-        }
+    /**
+     *
+     */
+    public setText()
+    {
+        this.attr("type", "text");
+        return this;
+    }
 
-        /**
-         * Get value, alternative to val() method
-         * @param 
-         * @return any
-         */
-        public getValue()
-        {
-            return this.element.value;
-        }
+    /**
+     *
+     */
+    public setHidden()
+    {
+        this.attr("type", "hidden");
+        return this;
+    }
 
-        /**
-         *
-         */
-        public setValue(value)
-        {
-            this.element.value = value;
-            return this;
-        }
+    /**
+     *
+     */
+    public setNumber()
+    {
+        this.attr("type", "number");
+        return this;
+    }
 
-        /**
-         * [type description]
-         * @param  {[type]} type [description]
-         * @return {[type]}      [description]
-         */
-        public type(type)
-        {
-            this.attr("type", type);
-            return this;
-        }
+    /**
+     *
+     */
+    public setDate()
+    {
+        this.attr("type", "number");
+        return this;
+    }
 
-        /**
-         *
-         */
-        public setText()
-        {
-            this.attr("type", "text");
-            return this;
-        }
-
-        /**
-         *
-         */
-        public setHidden()
-        {
-            this.attr("type", "hidden");
-            return this;
-        }
-
-        /**
-         *
-         */
-        public setNumber()
-        {
-            this.attr("type", "number");
-            return this;
-        }
-
-        /**
-         *
-         */
-        public setDate()
-        {
-            this.attr("type", "number");
-            return this;
-        }
-
-        /**
-         *
-         */
-        public setFile()
-        {
-            this.attr("type", "file");
-            return this;
-        }
+    /**
+     *
+     */
+    public setFile()
+    {
+        this.attr("type", "file");
+        return this;
     }
 }

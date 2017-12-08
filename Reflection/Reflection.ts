@@ -1,5 +1,5 @@
 import { RawModel } from "../Mvc/Model/RawModel";
-import { Deny } from "../Mvc/Model/Deny";
+import { Deny }     from "../Mvc/Model/Deny";
 
 export class Reflection
 {

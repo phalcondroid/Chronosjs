@@ -1,16 +1,25 @@
 
+import { Service } from "../../../../../Di/Service";
+import { HtmlElement } from "../Wrappers/HtmlElement";
+
 /**
  *
  */
-export class A
+export class A extends HtmlElement
 {
-
     /**
      *
      */
-    public constructor()
+    public constructor(args : any = {})
     {
-        
+        super();
+        this.setElement(
+            document.createElement(
+                "A"
+            )
+        );
+        this.setDi(new Service);
+        this.initialize(args);
     }
 
     /**
@@ -20,7 +29,9 @@ export class A
     public favIcon(favIcon) {
         let icon = new Northwind.Tag.I()
         .class(favIcon);
-        this.append(icon.getElement());
+        this.append(
+            icon.getElement()
+        );
         return this;
     }
 

@@ -1,20 +1,24 @@
-///<reference path="../Component.ts"/>
 
-namespace Northwind.Tag {
+import { HtmlElement } from "../Wrappers/HtmlElement";
+
+
     /**
      * [ViewElement description]
      * @type {[type]}
      */
-    export class Bdi extends Northwind.Html.Component
+    export class Bdi extends HtmlElement
     {
         /**
          *
          */
-        public constructor()
+        public constructor(args : any = {})
         {
-            super("BDI");
-            
-            this.initialize();
+            super();
+            this.setElement(
+                document.createElement(
+                    "BDI"
+                )
+            );
         }
     }
 }

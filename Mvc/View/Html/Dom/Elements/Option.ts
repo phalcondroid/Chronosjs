@@ -1,51 +1,54 @@
-///<reference path="../Component.ts"/>
+import { Service } from "../../../../../Di/Service"; import { HtmlElement } from "../Wrappers/HtmlElement";
 
-namespace Northwind.Tag {
+/**
+ *
+ * @type
+ */
+export class Option extends HtmlElement
+{
     /**
      *
-     * @type
      */
-    export class Option extends Northwind.Html.Component
+    public constructor(args : any = {})
     {
-        /**
-         *
-         */
-        public constructor()
-        {
-            super("OPTION");
-            
-            this.initialize();
-        }
+        super();
+        this.setElement(
+            document.createElement(
+                "OPTION"
+            )
+        );
+        this.setDi(new Service);
+        this.initialize(args);
+    }
 
-        public setValue(val)
-        {
-            this.attr("value", val);
-            return this;
-        }
+    public setValue(val)
+    {
+        this.attr("value", val);
+        return this;
+    }
 
-        /**
-         *
-         */
-        public getValue()
-        {
-            return this.attr("value");
-        }
+    /**
+     *
+     */
+    public getValue()
+    {
+        return this.attr("value");
+    }
 
-        /**
-         *
-         */
-        public setContent(content)
-        {
-            this.append(content);
-            return this;
-        }
+    /**
+     *
+     */
+    public setContent(content)
+    {
+        this.append(content);
+        return this;
+    }
 
-        /**
-         *
-         */
-        public getContent()
-        {
-            return this.getElement().text;
-        }
+    /**
+     *
+     */
+    public getContent()
+    {
+        return this.getElement().text;
     }
 }

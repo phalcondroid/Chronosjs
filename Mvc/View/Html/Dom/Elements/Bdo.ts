@@ -1,20 +1,22 @@
-///<reference path="../Component.ts"/>
 
-namespace Northwind.Tag {
+import { HtmlElement } from "../Wrappers/HtmlElement";
+
+/**
+ * [ViewElement description]
+ * @type {[type]}
+ */
+export class Bdo extends HtmlElement
+{
     /**
-     * [ViewElement description]
-     * @type {[type]}
+     *
      */
-    export class Bdo extends Northwind.Html.Component
+    public constructor(args : any = {})
     {
-        /**
-         *
-         */
-        public constructor()
-        {
-            super("BDO");
-            
-            this.initialize();
-        }
+        super();
+        this.setElement(
+            document.createElement(
+                "BDO"
+            )
+        );
     }
 }
