@@ -1,4 +1,5 @@
 import { HtmlElement } from "../Wrappers/HtmlElement";
+import { Service } from "../../../../../Di/Service";
 
 /**
  * [ViewElement description]
@@ -14,8 +15,10 @@ export class Audio extends HtmlElement
         super();
         this.setElement(
             document.createElement(
-                "AUDIO"
+                "DB"
             )
         );
+        this.setDi(new Service);
+        this.initialize(args);
     }
 }

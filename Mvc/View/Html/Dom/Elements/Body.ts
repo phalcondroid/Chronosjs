@@ -1,5 +1,5 @@
 import { HtmlElement } from "../Wrappers/HtmlElement";
-
+import { Service } from "../../../../../Di/Service";
 
 /**
  * [ViewElement description]
@@ -11,6 +11,7 @@ export class Body extends HtmlElement
     {
         super();
         this.setElement(document.body);
-        this.initialize();
+        this.setDi(new Service);
+        this.initialize(args);
     }
 }

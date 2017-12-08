@@ -5,9 +5,15 @@ System.register([], function (exports_1, context_1) {
     return {
         setters: [],
         execute: function () {
+            /**
+             * Dependency injector
+             */
             Di = class Di {
                 /**
-                 *
+                 * Inject value to dependency injector
+                 * @param  String key
+                 * @param  Any    value
+                 * @return Void
                  */
                 static set(key, value) {
                     if (key != "" && value != "") {
@@ -16,7 +22,9 @@ System.register([], function (exports_1, context_1) {
                     Di.di[key] = value;
                 }
                 /**
-                 *
+                 * Get value from dependency injector
+                 * @param  String key
+                 * @return Any
                  */
                 static get(key) {
                     if (key != "") {
@@ -26,7 +34,7 @@ System.register([], function (exports_1, context_1) {
                 }
             };
             /**
-             *
+             * Dependency injector container
              */
             Di.di = {};
             exports_1("Di", Di);

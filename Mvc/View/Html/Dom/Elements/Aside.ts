@@ -1,4 +1,5 @@
 import { HtmlElement } from "../Wrappers/HtmlElement";
+import { Service } from "../../../../../Di/Service";
 
 /**
  * [ViewElement description]
@@ -14,9 +15,10 @@ export class Aside extends HtmlElement
         super();
         this.setElement(
             document.createElement(
-                "ASIDE"
+                "DB"
             )
         );
-
+        this.setDi(new Service);
+        this.initialize(args);
     }
 }

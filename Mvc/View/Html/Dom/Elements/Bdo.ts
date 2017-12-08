@@ -18,5 +18,7 @@ export class Bdo extends HtmlElement
                 "BDO"
             )
         );
+        this.setDi(new Service);
+        this.initialize(args);
     }
 }

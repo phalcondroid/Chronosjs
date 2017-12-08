@@ -1,4 +1,5 @@
 import { HtmlElement } from "../Wrappers/HtmlElement";
+import { Service } from "../../../../../Di/Service";
 
 /**
  * [ViewElement description]
@@ -17,6 +18,7 @@ export class Blockquote extends HtmlElement
                 "BLOCKQUOTE"
             )
         );
+        this.setDi(new Service);
         this.initialize(args);
     }
 }

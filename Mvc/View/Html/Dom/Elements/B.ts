@@ -1,4 +1,5 @@
 import { HtmlElement } from "../Wrappers/HtmlElement";
+import { Service } from "../../../../../Di/Service"
 
 /**
  * [ViewElement description]

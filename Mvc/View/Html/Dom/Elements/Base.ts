@@ -1,4 +1,5 @@
 import { HtmlElement } from "../Wrappers/HtmlElement";
+import { Service } from "../../../../../Di/Service";
 
 /**
  * [ViewElement description]
@@ -17,5 +18,7 @@ export class Base extends HtmlElement
                 "BASE"
             )
         );
-    }
+        this.setDi(new Service);
+        this.initialize(args);
+     }
 }

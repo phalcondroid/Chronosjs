@@ -8,6 +8,9 @@ System.register([], function (exports_1, context_1) {
             (function (Northwind) {
                 class Application {
                     constructor() {
+                        window.onbeforeunload = function () {
+                            sessionStorage.clear();
+                        };
                     }
                 }
                 Northwind.Application = Application;

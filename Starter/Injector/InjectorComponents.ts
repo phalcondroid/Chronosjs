@@ -50,7 +50,11 @@ export class InjectorComponents
         );
         this.di.set(
             "ajax",
-            new Ajax;
+            new Ajax
+        );
+        this.di.set(
+            "em",
+            new EntityManager
         );
     }
 }
