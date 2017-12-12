@@ -1,6 +1,5 @@
-
+import { Service } from "../../../../../Di/Service";
 import { HtmlElement } from "../Wrappers/HtmlElement";
-
 /**
  * [ViewElement description]
  * @type {[type]}

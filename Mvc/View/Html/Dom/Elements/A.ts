@@ -1,4 +1,5 @@
 
+import { I } from "./I";
 import { Service } from "../../../../../Di/Service";
 import { HtmlElement } from "../Wrappers/HtmlElement";
 
@@ -27,7 +28,7 @@ export class A extends HtmlElement
      * @return {[type]} [description]
      */
     public favIcon(favIcon) {
-        let icon = new Northwind.Tag.I()
+        let icon = new I()
         .class(favIcon);
         this.append(
             icon.getElement()

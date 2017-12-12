@@ -1,6 +1,11 @@
+import { DatamapperOperators } from "./DatamapperOperators";
+import { ComparisonOperators } from "./ComparisonOperators";
+import { MessageCode } from "../Errors/MessageCode";
+import { Message } from "../Errors/Message";
+import { DataType } from "./DataType";
+import { Sort } from "./Sort";
 
-/// <reference path="./DatamapperOperators.ts" />
-/// <reference path="./ComparisonOperators.ts" />
+
 
 export class Filter
 {
@@ -104,8 +109,8 @@ export class Filter
                 case DatamapperOperators.COLUMNS:
                         this.columns = params[key];
                         if (typeof params[key] != "object") {
-                            throw Errors.Message.getCodeMessage(
-                                Errors.MessageCode.NOT_VALID_OBJECT,
+                            throw Message.getCodeMessage(
+                                MessageCode.NOT_VALID_OBJECT,
                                 "$columns option"
                             );
                         }
@@ -127,12 +132,12 @@ export class Filter
     public getSort(sortContent)
     {
         switch (typeof sortContent) {
-            case Northwind.Persistence.DataType.STRING_TYPE:
+            case DataType.STRING_TYPE:
                     this.sort.push(
                         "data = Sort.sortByField('" + sortContent + "');"
                     );
                 break;
-            case Northwind.Persistence.DataType.OBJECT_TYPE:
+            case DataType.OBJECT_TYPE:
                     if (Array.isArray(sortContent)) {
                         for (let sortKey in sortContent) {
                             let sortValue = sortContent[sortKey]
@@ -180,7 +185,7 @@ export class Filter
                 if (j < (newVal.length - 1)) {
                     operatorStr = operator;
                 }
-                let valueByType = Northwind.Persistence.DataType.getValueByType(newVal[j]);
+                let valueByType = DataType.getValueByType(newVal[j]);
                 condition += "row[\"" + key + "\"] " + comparison + " " + newVal[j] + " " + operatorStr + " ";
             }
 

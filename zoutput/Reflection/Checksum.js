@@ -14,11 +14,20 @@ System.register(["./Reflection"], function (exports_1, context_1) {
                  * Build checksum of any javascript object
                  * @param Object obj
                  */
-                constructor(obj) {
+                constructor(obj = false) {
                     /**
                      * Object become to string
                      */
                     this.stringObject = "";
+                    if (typeof obj == "object") {
+                        this.set(obj);
+                    }
+                }
+                /**
+                 *
+                 * @param obj
+                 */
+                set(obj) {
                     let reflection = new Reflection_1.Reflection();
                     this.stringObject = reflection.read(obj);
                 }

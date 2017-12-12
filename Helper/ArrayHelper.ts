@@ -6,7 +6,7 @@ export class ArrayHelper
 
     }
 
-    public static inArray(container : any[], element : any)
+    public static inArray(container : any[], element : any) : Boolean
     {
         for (var key in container) {
             if (container[key] == element) {

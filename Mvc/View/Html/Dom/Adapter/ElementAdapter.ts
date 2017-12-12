@@ -1,5 +1,106 @@
 import { HtmlElement } from "../Wrappers/HtmlElement";
 import { A } from "../Elements/A";
+import { Abbr } from "../Elements/Abbr";
+import { Address } from "../Elements/Address";
+import { Area } from "../Elements/Area";
+import { Article } from "../Elements/Article";
+import { Aside } from "../Elements/Aside";
+import { B } from "../Elements/B";
+import { Base } from "../Elements/Base";
+import { Bdi } from "../Elements/Bdi";
+import { Bdo } from "../Elements/Bdo";
+import { Blockquote } from "../Elements/Blockquote";
+import { Body } from "../Elements/Body";
+import { Br } from "../Elements/Br";
+import { Button } from "../Elements/Button";
+import { Canvas } from "../Elements/Canvas";
+import { Caption } from "../Elements/Caption";
+import { Cite } from "../Elements/Cite";
+import { Code } from "../Elements/Code";
+import { Col } from "../Elements/Col";
+import { ColGroup } from "../Elements/ColGroup";
+import { Datalist } from "../Elements/Datalist";
+import { Db } from "../Elements/Db";
+import { Del } from "../Elements/Del";
+import { Details } from "../Elements/Details";
+import { Dfn } from "../Elements/Dfn";
+import { Dialog } from "../Elements/Dialog";
+import { Div } from "../Elements/Div";
+import { Dl } from "../Elements/Dl";
+import { Dt } from "../Elements/Dt";
+import { Em } from "../Elements/Em";
+import { Embed } from "../Elements/Embed";
+import { Fieldset } from "../Elements/Fieldset";
+import { Figcaption } from "../Elements/Figcaption";
+import { Figure } from "../Elements/Figure";
+import { Footer } from "../Elements/Footer";
+import { Form } from "../Elements/Form";
+import { H1 } from "../Elements/H1";
+import { H2 } from "../Elements/H2";
+import { H3 } from "../Elements/H3";
+import { H4 } from "../Elements/H4";
+import { H5 } from "../Elements/H5";
+import { H6 } from "../Elements/H6";
+import { Head } from "../Elements/Head";
+import { Header } from "../Elements/Header";
+import { I } from "../Elements/I";
+import { Iframe } from "../Elements/Iframe";
+import { Img } from "../Elements/Img";
+import { Input } from "../Elements/Input";
+import { Ins } from "../Elements/Ins";
+import { Kbd } from "../Elements/Kbd";
+import { Keygen } from "../Elements/Keygen";
+import { Label } from "../Elements/Label";
+import { Leyend } from "../Elements/Leyend";
+import { Li } from "../Elements/Li";
+import { Link } from "../Elements/Link";
+import { Main } from "../Elements/Main";
+import { Menu } from "../Elements/Menu";
+import { Menuitem } from "../Elements/Menuitem";
+import { Meta } from "../Elements/Meta";
+import { Meter } from "../Elements/Meter";
+import { Nav } from "../Elements/Nav";
+import { Noscrip } from "../Elements/Noscrip";
+import { Obj } from "../Elements/Obj";
+import { Ol } from "../Elements/Ol";
+import { Optgroup } from "../Elements/Optgroup";
+import { P } from "../Elements/P";
+import { Param } from "../Elements/Param";
+import { Pre } from "../Elements/Pre";
+import { Progress } from "../Elements/Progress";
+import { Q } from "../Elements/Q";
+import { Rp } from "../Elements/Rp";
+import { Rt } from "../Elements/Rt";
+import { Ruby } from "../Elements/Ruby";
+import { S } from "../Elements/S";
+import { Samp } from "../Elements/Samp";
+import { Script } from "../Elements/Script";
+import { Section } from "../Elements/Section";
+import { Select } from "../Elements/Select";
+import { Small } from "../Elements/Small";
+import { Source } from "../Elements/Source";
+import { Span } from "../Elements/Span";
+import { Strong } from "../Elements/Strong";
+import { Style } from "../Elements/Style";
+import { Sub } from "../Elements/Sub";
+import { Summary } from "../Elements/Summary";
+import { Sup } from "../Elements/Sup";
+import { Td } from "../Elements/Td";
+import { Table } from "../Elements/Table";
+import { Tbody } from "../Elements/Tbody";
+import { Textarea } from "../Elements/Textarea";
+import { Tfoot } from "../Elements/Tfoot";
+import { Th } from "../Elements/Th";
+import { Thead } from "../Elements/Thead";
+import { Time } from "../Elements/Time";
+import { Title } from "../Elements/Title";
+import { Tr } from "../Elements/Tr";
+import { Track } from "../Elements/Track";
+import { U } from "../Elements/U";
+import { Ul } from "../Elements/Ul";
+import { Var } from "../Elements/Var";
+import { Video } from "../Elements/Video";
+import { Wbr } from "../Elements/Wbr";
 
 export class ElementAdapter
 {
@@ -34,316 +135,313 @@ export class ElementAdapter
                     instance = new A();
                 break;
             case "ABBR":
-                    instance = new Northwind.Tag.Abbr();
+                    instance = new Abbr();
                 break;
             case "ADDRESS":
-                    instance = new Northwind.Tag.Address();
+                    instance = new Address();
                 break;
             case "AREA":
-                    instance = new Northwind.Tag.Area();
+                    instance = new Area();
                 break;
             case "ARTICLE":
-                    instance = new Northwind.Tag.Article();
+                    instance = new Article();
                 break;
             case "ASIDE":
-                    instance = new Northwind.Tag.Aside();
+                    instance = new Aside();
                 break;
             case "AUDIO":
-                    instance = new Northwind.Tag.Audio();
+                    instance = new Audio();
                 break;
             case "B":
-                    instance = new Northwind.Tag.B();
+                    instance = new B();
                 break;
             case "BASE":
-                    instance = new Northwind.Tag.Base();
+                    instance = new Base();
                 break;
             case "BDI":
-                    instance = new Northwind.Tag.Bdi();
+                    instance = new Bdi();
                 break;
             case "BDO":
-                    instance = new Northwind.Tag.Bdo();
+                    instance = new Bdo();
                 break;
             case "BLOCKQUOTE":
-                    instance = new Northwind.Tag.Blockquote();
+                    instance = new Blockquote();
                 break;
             case "BODY":
-                    instance = new Northwind.Tag.Body();
+                    instance = new Body();
                 break;
             case "BR":
-                    instance = new Northwind.Tag.Br();
+                    instance = new Br();
                 break;
             case "BUTTON":
-                    instance = new Northwind.Tag.Button();
+                    instance = new Button();
                 break;
             case "CANVAS":
-                    instance = new Northwind.Tag.Canvas();
+                    instance = new Canvas();
                 break;
             case "CAPTION":
-                    instance = new Northwind.Tag.Caption();
+                    instance = new Caption();
                 break;
             case "CITE":
-                    instance = new Northwind.Tag.Cite();
+                    instance = new Cite();
                 break;
             case "CODE":
-                    instance = new Northwind.Tag.Code();
+                    instance = new Code();
                 break;
             case "COL":
-                    instance = new Northwind.Tag.Col();
+                    instance = new Col();
                 break;
             case "COLGROUP":
-                    instance = new Northwind.Tag.ColGroup();
+                    instance = new ColGroup();
                 break;
             case "DATALIST":
-                    instance = new Northwind.Tag.Datalist();
+                    instance = new Datalist();
                 break;
             case "DB":
-                    instance = new Northwind.Tag.Db();
+                    instance = new Db();
                 break;
             case "DEL":
-                    instance = new Northwind.Tag.Del();
+                    instance = new Del();
                 break;
             case "DETAILS":
-                    instance = new Northwind.Tag.Details();
+                    instance = new Details();
                 break;
             case "DFN":
-                    instance = new Northwind.Tag.Dfn();
+                    instance = new Dfn();
                 break;
             case "DIALOG":
-                    instance = new Northwind.Tag.Dialog();
+                    instance = new Dialog();
                 break;
             case "DIV":
-                    instance = new Northwind.Tag.Div();
+                    instance = new Div();
                 break;
             case "DL":
-                    instance = new Northwind.Tag.Dl();
+                    instance = new Dl();
                 break;
             case "DT":
-                    instance = new Northwind.Tag.Dt();
+                    instance = new Dt();
                 break;
             case "EM":
-                    instance = new Northwind.Tag.Em();
+                    instance = new Em();
                 break;
             case "EMBED":
-                    instance = new Northwind.Tag.Embed();
+                    instance = new Embed();
                 break;
             case "FIELDSET":
-                    instance = new Northwind.Tag.Fieldset();
+                    instance = new Fieldset();
                 break;
             case "FIGCAPTION":
-                    instance = new Northwind.Tag.Figcaption();
+                    instance = new Figcaption();
                 break;
             case "FIGURE":
-                    instance = new Northwind.Tag.Figure();
+                    instance = new Figure();
                 break;
             case "FOOTER":
-                    instance = new Northwind.Tag.Footer();
+                    instance = new Footer();
                 break;
             case "FORM":
-                    instance = new Northwind.Tag.Form();
+                    instance = new Form();
                 break;
             case "H1":
-                    instance = new Northwind.Tag.H1();
+                    instance = new H1();
                 break;
             case "H2":
-                    instance = new Northwind.Tag.H2();
+                    instance = new H2();
                 break;
             case "H3":
-                    instance = new Northwind.Tag.H3();
+                    instance = new H3();
                 break;
             case "H4":
-                    instance = new Northwind.Tag.H4();
+                    instance = new H4();
                 break;
             case "H5":
-                    instance = new Northwind.Tag.H5();
+                    instance = new H5();
                 break;
             case "H6":
-                    instance = new Northwind.Tag.H6();
+                    instance = new H6();
                 break;
             case "HEAD":
-                    instance = new Northwind.Tag.Head();
+                    instance = new Head();
                 break;
             case "HEADER":
-                    instance = new Northwind.Tag.Header();
+                    instance = new Header();
                 break;
             case "I":
-                    instance = new Northwind.Tag.I();
+                    instance = new I();
                 break;
             case "IFRAME":
-                    instance = new Northwind.Tag.Iframe();
+                    instance = new Iframe();
                 break;
             case "IMG":
-                    instance = new Northwind.Tag.Img();
+                    instance = new Img();
                 break;
             case "INPUT":
-                    instance = new Northwind.Tag.Input();
+                    instance = new Input();
                 break;
             case "INS":
-                    instance = new Northwind.Tag.Ins();
+                    instance = new Ins();
                 break;
             case "KBD":
-                    instance = new Northwind.Tag.Kbd();
+                    instance = new Kbd();
                 break;
             case "KEYGEN":
-                    instance = new Northwind.Tag.Keygen();
+                    instance = new Keygen();
                 break;
             case "LABEL":
-                    instance = new Northwind.Tag.Label();
+                    instance = new Label();
                 break;
             case "LEYEND":
-                    instance = new Northwind.Tag.Leyend();
+                    instance = new Leyend();
                 break;
             case "LI":
-                    instance = new Northwind.Tag.Li();
+                    instance = new Li();
                 break;
             case "LINK":
-                    instance = new Northwind.Tag.Link();
+                    instance = new Link();
                 break;
             case "MAIN":
-                    instance = new Northwind.Tag.Main();
+                    instance = new Main();
                 break;
-            case "MAP":
-                    instance = new Northwind.Tag.Map();
-                break;
+            //case "MAP":
+                    //instance = new Map();
+                //break;
             case "MENU":
-                    instance = new Northwind.Tag.Menu();
+                    instance = new Menu();
                 break;
             case "MENUITEM":
-                    instance = new Northwind.Tag.Menuitem();
+                    instance = new Menuitem();
                 break;
             case "META":
-                    instance = new Northwind.Tag.Meta();
-                break;
-            case "META":
-                    instance = new Northwind.Tag.Meta();
+                    instance = new Meta();
                 break;
             case "METER":
-                    instance = new Northwind.Tag.Meter();
+                    instance = new Meter();
                 break;
             case "NAV":
-                    instance = new Northwind.Tag.Nav();
+                    instance = new Nav();
                 break;
             case "NOSCRIP":
-                    instance = new Northwind.Tag.Noscrip();
+                    instance = new Noscrip();
                 break;
             case "OBJECT":
-                    instance = new Northwind.Tag.Obj();
+                    instance = new Obj();
                 break;
             case "OL":
-                    instance = new Northwind.Tag.Ol();
+                    instance = new Ol();
                 break;
             case "OPTGROUP":
-                    instance = new Northwind.Tag.Optgroup();
+                    instance = new Optgroup();
                 break;
             case "P":
-                    instance = new Northwind.Tag.P();
+                    instance = new P();
                 break;
             case "PARAM":
-                    instance = new Northwind.Tag.Param();
+                    instance = new Param();
                 break;
             case "PRE":
-                    instance = new Northwind.Tag.Pre();
+                    instance = new Pre();
                 break;
             case "PROGRESS":
-                    instance = new Northwind.Tag.Progress();
+                    instance = new Progress();
                 break;
             case "Q":
-                    instance = new Northwind.Tag.Q();
+                    instance = new Q();
                 break;
             case "RP":
-                    instance = new Northwind.Tag.Rp();
+                    instance = new Rp();
                 break;
             case "RT":
-                    instance = new Northwind.Tag.Rt();
+                    instance = new Rt();
                 break;
             case "RUBY":
-                    instance = new Northwind.Tag.Ruby();
+                    instance = new Ruby();
                 break;
             case "S":
-                    instance = new Northwind.Tag.S();
+                    instance = new S();
                 break;
             case "SAMP":
-                    instance = new Northwind.Tag.Samp();
+                    instance = new Samp();
                 break;
             case "SCRIPT":
-                    instance = new Northwind.Tag.Script();
+                    instance = new Script();
                 break;
             case "SECTION":
-                    instance = new Northwind.Tag.Section();
+                    instance = new Section();
                 break;
             case "SELECT":
-                    instance = new Northwind.Tag.Select();
+                    instance = new Select();
                 break;
             case "SMALL":
-                    instance = new Northwind.Tag.Small();
+                    instance = new Small();
                 break;
             case "SOURCE":
-                    instance = new Northwind.Tag.Source();
+                    instance = new Source();
                 break;
             case "SPAN":
-                    instance = new Northwind.Tag.Span();
+                    instance = new Span();
                 break;
             case "STRONG":
-                    instance = new Northwind.Tag.Strong();
+                    instance = new Strong();
                 break;
             case "STYLE":
-                    instance = new Northwind.Tag.Style();
+                    instance = new Style();
                 break;
             case "SUB":
-                    instance = new Northwind.Tag.Sub();
+                    instance = new Sub();
                 break;
             case "SUMMARY":
-                    instance = new Northwind.Tag.Summary();
+                    instance = new Summary();
                 break;
             case "SUP":
-                    instance = new Northwind.Tag.Sup();
+                    instance = new Sup();
                 break;
             case "TABLE":
-                    instance = new Northwind.Tag.Table();
+                    instance = new Table();
                 break;
             case "TBODY":
-                    instance = new Northwind.Tag.Tbody();
+                    instance = new Tbody();
                 break;
             case "TD":
-                    instance = new Northwind.Tag.Td();
+                    instance = new Td();
                 break;
             case "TEXTAREA":
-                    instance = new Northwind.Tag.Textarea();
+                    instance = new Textarea();
                 break;
             case "TFOOT":
-                    instance = new Northwind.Tag.Tfoot();
+                    instance = new Tfoot();
                 break;
             case "TH":
-                    instance = new Northwind.Tag.Th();
+                    instance = new Th();
                 break;
             case "THEAD":
-                    instance = new Northwind.Tag.Thead();
+                    instance = new Thead();
                 break;
             case "TIME":
-                    instance = new Northwind.Tag.Time();
+                    instance = new Time();
                 break;
             case "TITLE":
-                    instance = new Northwind.Tag.Title();
+                    instance = new Title();
                 break;
             case "TR":
-                    instance = new Northwind.Tag.Tr();
+                    instance = new Tr();
                 break;
             case "TRACK":
-                    instance = new Northwind.Tag.Track();
+                    instance = new Track();
                 break;
             case "U":
-                    instance = new Northwind.Tag.U();
+                    instance = new U();
                 break;
             case "UL":
-                    instance = new Northwind.Tag.Ul();
+                    instance = new Ul();
                 break;
             case "VAR":
-                    instance = new Northwind.Tag.Var();
+                    instance = new Var();
                 break;
             case "VIDEO":
-                    instance = new Northwind.Tag.Video();
+                    instance = new Video();
                 break;
             case "WBR":
-                    instance = new Northwind.Tag.Wbr();
+                    instance = new Wbr();
                 break;
             default:
                 "";

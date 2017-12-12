@@ -11,7 +11,18 @@ export class Checksum
      * Build checksum of any javascript object
      * @param Object obj
      */
-    public constructor(obj : Object)
+    public constructor(obj : any = false)
+    {
+        if (typeof obj == "object") {
+            this.set(obj);
+        }
+    }
+
+    /**
+     * 
+     * @param obj 
+     */
+    public set(obj)
     {
         let reflection = new Reflection();
         this.stringObject = reflection.read(obj);

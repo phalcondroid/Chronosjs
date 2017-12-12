@@ -5,163 +5,160 @@ import { Tbody } from "./Tbody";
 import { Tfoot } from "./Tfoot";
 import { Tr } from "./Tr";
 
-namespace Northwind.Tag
+/**
+ * [Table description]
+ * @type {[type]}
+ */
+export class Table extends HtmlElement
 {
+    private tblElements;
+    private thead;
+    private tbody;
+    private tfoot;
+    private tr;
+    private th;
+    private td;
+    private system;
+    private header = false;
+    private fnCHeader;
+    private fnCContent;
+
     /**
-     * [Table description]
-     * @type {[type]}
+     *
      */
-    export class Table extends HtmlElement
+    public constructor(args : any = {})
     {
-        private tblElements;
-        private thead;
-        private tbody;
-        private tfoot;
-        private tr;
-        private th;
-        private td;
-        private system;
-        private header = false;
-        private fnCHeader;
-        private fnCContent;
+        super();
+        this.setElement(
+            document.createElement(
+                "BR"
+            )
+        );
+        this.setDi(new Service);
+        
+        this.thead = new Thead();
+        this.tbody = new Tbody();
+        this.tfoot = new Tfoot();
 
-        /**
-         *
-         */
-        public constructor(args : any = {})
-        {
-            super();
-            this.setElement(
-                document.createElement(
-                    "BR"
-                )
-            );
-            this.setDi(new Service);
-            
-            this.thead = new Thead();
-            this.tbody = new Tbody();
-            this.tfoot = new Tfoot();
+        this.initialize(args);
+    }
 
-            this.initialize(args);
-        }
+    /**
+     *
+     */
+    public getThead()
+    {
+        return this.thead;
+    }
 
-        /**
-         *
-         */
-        public getThead()
-        {
-            return this.thead;
-        }
+    /**
+     *
+     */
+    public getTbody()
+    {
+        return this.tbody;
+    }
 
-        /**
-         *
-         */
-        public getTbody()
-        {
-            return this.tbody;
-        }
+    /**
+     *
+     */
+    public toHead(component)
+    {
+        this.thead.append(
+            component
+        );
+        this.append(
+            this.thead
+        );
+        return this;
+    }
 
-        /**
-         *
-         */
-        public toHead(component)
-        {
-            this.thead.append(
-                component
-            );
-            this.append(
-                this.thead
-            );
-            return this;
-        }
+    /**
+     *
+     */
+    public toHeadTr(component)
+    {
+        let tr = new Tr();
+        tr.append(component);
 
-        /**
-         *
-         */
-        public toHeadTr(component)
-        {
-            let tr = new Tr();
-            tr.append(component);
+        this.thead.append(
+            tr
+        );
 
-            this.thead.append(
-                tr
-            );
+        this.append(
+            this.thead
+        );
 
-            this.append(
-                this.thead
-            );
+        return this;
+    }
 
-            return this;
-        }
+    /**
+     *
+     */
+    public toBody(component)
+    {
+        this.tbody.append(
+            component
+        );
 
-        /**
-         *
-         */
-        public toBody(component)
-        {
-            this.tbody.append(
-                component
-            );
+        this.append(
+            this.tbody
+        );
 
-            this.append(
-                this.tbody
-            );
+        return this;
+    }
 
-            return this;
-        }
+    /**
+     *
+     */
+    public toFoot(component)
+    {
+        this.tfoot.append(
+            component
+        );
 
-        /**
-         *
-         */
-        public toFoot(component)
-        {
-            this.tfoot.append(
-                component
-            );
+        this.append(
+            this.tfoot
+        );
 
-            this.append(
-                this.tfoot
-            );
+        return this;
+    }
 
-            return this;
-        }
+    /**
+     *
+     */
+    public toBodyTr(component)
+    {
+        let tr = new Tr();
+        tr.append(component);
 
-        /**
-         *
-         */
-        public toBodyTr(component)
-        {
-            let tr = new Tr();
-            tr.append(component);
+        this.tbody.append(
+            tr
+        );
 
-            this.tbody.append(
-                tr
-            );
+        this.append(
+            this.tbody
+        );
 
-            this.append(
-                this.tbody
-            );
+        return this;
+    }
 
-            return this;
-        }
+    /**
+     *
+     */
+    public toFootTr(component)
+    {
+        let tr = new Tr();
+        tr.append(component);
 
-        /**
-         *
-         */
-        public toFootTr(component)
-        {
-            let tr = new Tr();
-            tr.append(component);
+        this.tfoot.append(
+            tr
+        );
 
-            this.tfoot.append(
-                tr
-            );
+        this.append(
+            this.tfoot
+        );
 
-            this.append(
-                this.tfoot
-            );
-
-            return this;
-        }
+        return this;
     }
 }

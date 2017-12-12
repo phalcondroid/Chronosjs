@@ -1,13 +1,16 @@
 
+import { Url }  from "../../Url/Url";
+import { Uuid } from "../../Helper/Uuid";
+import { Ajax } from "../../Network/Ajax";
+import { EntityManager } from "../../Persistence/EntityManager";
 import { CssManager }     from "../../Mvc/View/Html/Dom/CssManager";
 import { DomManager }     from "../../Mvc/View/Html/Dom/DomManager";
 import { EventManager }   from "../../Mvc/View/Html/Dom/EventManager";
 import { ParentManager }  from "../../Mvc/View/Html/Dom/ParentManager";
 import { ElementManager } from "../../Mvc/View/Html/Dom/ElementManager";
 import { InjectionAwareInterface } from "../../Di/InjectionAwareInterface";
-import { Ajax } from "../../Network/Ajax";
 
-export class InjectorComponents
+export class InitializeComponents
 {
     /**
      * 
@@ -55,6 +58,14 @@ export class InjectorComponents
         this.di.set(
             "em",
             new EntityManager
+        );
+        this.di.set(
+            "uuid",
+            new Uuid
+        );
+        this.di.set(
+            "url",
+            new Url
         );
     }
 }

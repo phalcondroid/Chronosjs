@@ -1,9 +1,12 @@
-System.register(["../Wrappers/HtmlElement"], function (exports_1, context_1) {
+System.register(["../../../../../Di/Service", "../Wrappers/HtmlElement"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var HtmlElement_1, Bdo;
+    var Service_1, HtmlElement_1, Bdo;
     return {
         setters: [
+            function (Service_1_1) {
+                Service_1 = Service_1_1;
+            },
             function (HtmlElement_1_1) {
                 HtmlElement_1 = HtmlElement_1_1;
             }
@@ -20,7 +23,7 @@ System.register(["../Wrappers/HtmlElement"], function (exports_1, context_1) {
                 constructor(args = {}) {
                     super();
                     this.setElement(document.createElement("BDO"));
-                    this.setDi(new Service);
+                    this.setDi(new Service_1.Service);
                     this.initialize(args);
                 }
             };

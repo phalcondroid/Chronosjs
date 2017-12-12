@@ -1,35 +1,54 @@
-/// <reference path="../Reflection/Reflection.ts" />
-/// <reference path="../Service/Container.ts" />
-/// <reference path="../Mvc/Model/StaticModel.ts" />
-/// <reference path="../Mvc/Model/AjaxModel.ts" />
-/// <reference path="../Network/Ajax.ts" />
-/// <reference path="./UnitOfWork.ts" />
-/// <reference path="./Hydrator.ts" />
-/// <reference path="./Filter.ts" />
-System.register([], function (exports_1, context_1) {
+System.register(["./Filter", "./Hydrator", "../Network/Ajax", "../Di/Service", "./UnitOfWork", "../Di/Container", "../Mvc/Model/RawModel", "../Mvc/Model/AjaxModel", "../Reflection/Reflection", "../Mvc/Model/StaticModel", "../Mvc/Model/AjaxModelPersistent"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var EntityManager;
+    var Filter_1, Hydrator_1, Ajax_1, Service_1, UnitOfWork_1, Container_1, RawModel_1, AjaxModel_1, Reflection_1, StaticModel_1, AjaxModelPersistent_1, EntityManager;
     return {
-        setters: [],
+        setters: [
+            function (Filter_1_1) {
+                Filter_1 = Filter_1_1;
+            },
+            function (Hydrator_1_1) {
+                Hydrator_1 = Hydrator_1_1;
+            },
+            function (Ajax_1_1) {
+                Ajax_1 = Ajax_1_1;
+            },
+            function (Service_1_1) {
+                Service_1 = Service_1_1;
+            },
+            function (UnitOfWork_1_1) {
+                UnitOfWork_1 = UnitOfWork_1_1;
+            },
+            function (Container_1_1) {
+                Container_1 = Container_1_1;
+            },
+            function (RawModel_1_1) {
+                RawModel_1 = RawModel_1_1;
+            },
+            function (AjaxModel_1_1) {
+                AjaxModel_1 = AjaxModel_1_1;
+            },
+            function (Reflection_1_1) {
+                Reflection_1 = Reflection_1_1;
+            },
+            function (StaticModel_1_1) {
+                StaticModel_1 = StaticModel_1_1;
+            },
+            function (AjaxModelPersistent_1_1) {
+                AjaxModelPersistent_1 = AjaxModelPersistent_1_1;
+            }
+        ],
         execute: function () {
-            /// <reference path="../Reflection/Reflection.ts" />
-            /// <reference path="../Service/Container.ts" />
-            /// <reference path="../Mvc/Model/StaticModel.ts" />
-            /// <reference path="../Mvc/Model/AjaxModel.ts" />
-            /// <reference path="../Network/Ajax.ts" />
-            /// <reference path="./UnitOfWork.ts" />
-            /// <reference path="./Hydrator.ts" />
-            /// <reference path="./Filter.ts" />
             EntityManager = class EntityManager {
                 /**
                  * Entity manager is a class
                  */
                 constructor() {
-                    this.container = new Northwind.Service.Container();
                     this.ajax = null;
                     this.hydrator = null;
-                    this.uow = new Northwind.Persistence.UnitOfWork;
+                    this.container = new Container_1.Container();
+                    this.uow = new UnitOfWork_1.UnitOfWork;
+                    this.di = new Service_1.Service;
                 }
                 /**
                  *
@@ -77,14 +96,14 @@ System.register([], function (exports_1, context_1) {
                         .set("transactionParams", params);
                     this.getContainer()
                         .set("transactionType", type);
-                    if (objModel instanceof Northwind.Mvc.RawModel) {
-                        var callAjax = false;
-                        if (objModel instanceof Northwind.Mvc.AjaxModelPersistent) {
+                    if (objModel instanceof RawModel_1.RawModel) {
+                        let callAjax = false;
+                        if (objModel instanceof AjaxModelPersistent_1.AjaxModelPersistent) {
                             if (objModel.getAjaxInit() === null) {
                                 this.callAjax(objModel, type, params);
                             }
                         }
-                        else if (objModel instanceof Northwind.Mvc.AjaxModel) {
+                        else if (objModel instanceof AjaxModel_1.AjaxModel) {
                             this.callAjax(objModel, type, params);
                         }
                     }
@@ -93,7 +112,7 @@ System.register([], function (exports_1, context_1) {
                     }
                 }
                 callAjax(objModel, type, params) {
-                    this.ajax = new Network.Ajax();
+                    this.ajax = new Ajax_1.Ajax();
                     var url = null;
                     switch (type) {
                         case "find":
@@ -146,11 +165,11 @@ System.register([], function (exports_1, context_1) {
                         .set("transactionObjectModel", model);
                     this.getContainer()
                         .set("transactionType", "save");
-                    if (model instanceof Northwind.Mvc.AjaxModel) {
-                        this.ajax = new Northwind.Network.Ajax();
+                    if (model instanceof AjaxModel_1.AjaxModel) {
+                        this.ajax = new Ajax_1.Ajax();
                         var modelName = model.getClassName();
                         switch (model.state) {
-                            case Northwind.Persistence.UnitOfWork.NEW:
+                            case UnitOfWork_1.UnitOfWork.NEW:
                                 var url = model.getInsertUrl();
                                 if (url == null) {
                                     url = this.getDi().get("url").get("baseUrl") +
@@ -159,7 +178,7 @@ System.register([], function (exports_1, context_1) {
                                 }
                                 this.ajax.setUrl(url);
                                 break;
-                            case Northwind.Persistence.UnitOfWork.CREATED:
+                            case UnitOfWork_1.UnitOfWork.CREATED:
                                 var url = model.getUpdateUrl();
                                 if (url == null) {
                                     url = this.getDi().get("url").get("baseUrl") +
@@ -169,19 +188,19 @@ System.register([], function (exports_1, context_1) {
                                 this.ajax.setUrl(url);
                                 break;
                         }
-                        var reflection = new Northwind.Reflection.Reflection();
+                        var reflection = new Reflection_1.Reflection();
                         var attrsAsString = JSON.stringify(reflection.getAtttributeAsObjects(model));
                         var objParams = {};
                         objParams[modelName] = attrsAsString;
                         this.ajax.setParams(objParams);
                         this.ajax.setMethod(model.getMethod());
                     }
-                    else if (model instanceof Northwind.Mvc.StaticModel) {
+                    else if (model instanceof StaticModel_1.StaticModel) {
                         switch (model.state) {
-                            case Northwind.Persistence.UnitOfWork.NEW:
+                            case UnitOfWork_1.UnitOfWork.NEW:
                                 let tempData = model.getData();
                                 break;
-                            case Northwind.Persistence.UnitOfWork.CREATED:
+                            case UnitOfWork_1.UnitOfWork.CREATED:
                                 break;
                         }
                     }
@@ -197,8 +216,8 @@ System.register([], function (exports_1, context_1) {
                         .set("transactionObjectModel", model);
                     this.getContainer()
                         .set("transactionType", "delete");
-                    if (model instanceof Northwind.Mvc.AjaxModel) {
-                        this.ajax = new Network.Ajax();
+                    if (model instanceof AjaxModel_1.AjaxModel) {
+                        this.ajax = new Ajax_1.Ajax();
                         var modelName = model.getClassName();
                         var url = model.getDeleteUrl();
                         if (url == null) {
@@ -207,19 +226,19 @@ System.register([], function (exports_1, context_1) {
                                 "Delete";
                         }
                         this.ajax.setUrl(url);
-                        var reflection = new Northwind.Reflection.Reflection();
+                        var reflection = new Reflection_1.Reflection();
                         var attrsAsString = JSON.stringify(reflection.getAtttributeAsObjects(model));
                         var objParams = {};
                         objParams[modelName] = attrsAsString;
                         this.ajax.setParams(objParams);
                         this.ajax.setMethod(model.getMethod());
                     }
-                    else if (model instanceof Northwind.Mvc.StaticModel) {
+                    else if (model instanceof StaticModel_1.StaticModel) {
                         switch (model.state) {
-                            case UnitOfWork.NEW:
+                            case UnitOfWork_1.UnitOfWork.NEW:
                                 let tempData = model.getData();
                                 break;
-                            case UnitOfWork.CREATED:
+                            case UnitOfWork_1.UnitOfWork.CREATED:
                                 break;
                         }
                     }
@@ -254,7 +273,7 @@ System.register([], function (exports_1, context_1) {
                  *
                  */
                 checkModel(fn, type, model, objModel, params) {
-                    if (objModel instanceof Northwind.Mvc.AjaxModelPersistent) {
+                    if (objModel instanceof AjaxModelPersistent_1.AjaxModelPersistent) {
                         let data = objModel.getData();
                         if (objModel.getAjaxInit() == null) {
                             this.setResponseAjax(fn, type, model, objModel, params);
@@ -264,11 +283,11 @@ System.register([], function (exports_1, context_1) {
                         }
                     }
                     else {
-                        if (objModel instanceof Northwind.Mvc.AjaxModel) {
+                        if (objModel instanceof AjaxModel_1.AjaxModel) {
                             this.setResponseAjax(fn, type, model, objModel, params);
                         }
                         else {
-                            if (objModel instanceof Northwind.Mvc.StaticModel) {
+                            if (objModel instanceof StaticModel_1.StaticModel) {
                                 this.setResponseStatic(fn, objModel, type, model, params);
                             }
                         }
@@ -317,18 +336,18 @@ System.register([], function (exports_1, context_1) {
                  */
                 getResultSet(response, params, model, objModel) {
                     let resultSet = new Array();
-                    let hydrator = new Hydrator;
-                    let filters = new Filter;
+                    let hydrator = new Hydrator_1.Hydrator;
+                    let filters = new Filter_1.Filter;
                     filters.buildCondition(params);
                     var data = new Array();
-                    if (objModel instanceof Northwind.Mvc.AjaxModelPersistent) {
+                    if (objModel instanceof AjaxModelPersistent_1.AjaxModelPersistent) {
                         if (objModel.getAjaxInit() == null) {
                             objModel.setAjaxInit(true);
                             objModel.setData(response);
                         }
                         data = filters.getMultipleRowValues(response, false);
                     }
-                    else if (objModel instanceof Northwind.Mvc.AjaxModel) {
+                    else if (objModel instanceof AjaxModel_1.AjaxModel) {
                         data = filters.getMultipleRowValues(response, false);
                     }
                     else {
@@ -337,7 +356,7 @@ System.register([], function (exports_1, context_1) {
                     var i = 0;
                     for (let key in data) {
                         let newModel = hydrator.hydrate(model, data[key]);
-                        if (newModel instanceof Northwind.Mvc.StaticModel) {
+                        if (newModel instanceof StaticModel_1.StaticModel) {
                             newModel.setIndex(i);
                         }
                         resultSet.push(newModel);
@@ -403,39 +422,14 @@ System.register([], function (exports_1, context_1) {
                     let results = (funcNameRegex).exec(this["constructor"].toString());
                     return (results && results.length > 1) ? results[1] : "";
                 }
-                getDom() {
-                    return Northwind.Service.DependencyInjector.get().get("dom");
-                }
-                getAjax() {
-                    return Northwind.Service.DependencyInjector.get().get("ajax");
-                }
-                getEm() {
-                    return Northwind.Service.DependencyInjector.get().get("em");
-                }
-                /**
-                 *
-                 * @param name
-                 */
-                getTag(tag) {
-                    return Northwind.Service.DependencyInjector.get().get("tag").tag(tag);
+                setDi(di) {
+                    this.di = di;
                 }
                 /**
                  *
                  */
-                getUrl() {
-                    let url = Northwind.Service.DependencyInjector.get().get("url");
-                    return url;
-                }
-                /**
-                 *
-                 * @param tag
-                 */
-                getEvent(tag = false) {
-                    let events = Northwind.Service.DependencyInjector.get().get("event");
-                    return events.tag(tag);
-                }
                 getDi() {
-                    return Northwind.Service.DependencyInjector.get();
+                    return this.di;
                 }
             };
             exports_1("EntityManager", EntityManager);

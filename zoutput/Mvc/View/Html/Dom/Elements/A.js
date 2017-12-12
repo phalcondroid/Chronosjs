@@ -1,9 +1,12 @@
-System.register(["../../../../../Di/Service", "../Wrappers/HtmlElement"], function (exports_1, context_1) {
+System.register(["./I", "../../../../../Di/Service", "../Wrappers/HtmlElement"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var Service_1, HtmlElement_1, A;
+    var I_1, Service_1, HtmlElement_1, A;
     return {
         setters: [
+            function (I_1_1) {
+                I_1 = I_1_1;
+            },
             function (Service_1_1) {
                 Service_1 = Service_1_1;
             },
@@ -30,7 +33,7 @@ System.register(["../../../../../Di/Service", "../Wrappers/HtmlElement"], functi
                  * @return {[type]} [description]
                  */
                 favIcon(favIcon) {
-                    let icon = new Northwind.Tag.I()
+                    let icon = new I_1.I()
                         .class(favIcon);
                     this.append(icon.getElement());
                     return this;

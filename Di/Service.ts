@@ -7,7 +7,7 @@ import { InjectionAwareInterface } from "./InjectionAwareInterface";
  */
 export class Service implements InjectionAwareInterface
 {
-    di;
+    private di;
 
     /**
      * 

@@ -1,27 +1,28 @@
-/// <reference path="../Reflection/Reflection.ts" />
-/// <reference path="../Mvc/Model/RawModel.ts" />
-/// <reference path="./UnitOfWork.ts" />
-System.register([], function (exports_1, context_1) {
+System.register(["./UnitOfWork", "../Mvc/Model/RawModel"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var Hydrator;
+    var UnitOfWork_1, RawModel_1, Hydrator;
     return {
-        setters: [],
+        setters: [
+            function (UnitOfWork_1_1) {
+                UnitOfWork_1 = UnitOfWork_1_1;
+            },
+            function (RawModel_1_1) {
+                RawModel_1 = RawModel_1_1;
+            }
+        ],
         execute: function () {
-            /// <reference path="../Reflection/Reflection.ts" />
-            /// <reference path="../Mvc/Model/RawModel.ts" />
-            /// <reference path="./UnitOfWork.ts" />
             Hydrator = class Hydrator {
                 constructor() {
                 }
                 hydrate(model, data) {
                     var newModel = new model();
-                    newModel.state = Northwind.Persistence.UnitOfWork.CREATED;
+                    newModel.state = UnitOfWork_1.UnitOfWork.CREATED;
                     for (let key in data) {
                         switch (typeof newModel[key]) {
                             case "function":
                                 var auxPropNested = new newModel[key];
-                                if (auxPropNested instanceof Northwind.Mvc.RawModel) {
+                                if (auxPropNested instanceof RawModel_1.RawModel) {
                                     newModel[key] = this.hydrate(newModel[key], data[key]);
                                 }
                                 else {
@@ -37,7 +38,7 @@ System.register([], function (exports_1, context_1) {
                                                 if (data[key].length > 0) {
                                                     var auxSubModel = new newModel[key][0];
                                                     var arrayData = new Array();
-                                                    if (auxSubModel instanceof Northwind.Mvc.RawModel) {
+                                                    if (auxSubModel instanceof RawModel_1.RawModel) {
                                                         for (let subModelKey in data[key]) {
                                                             arrayData.push(this.hydrate(newModel[key][0], data[key][subModelKey]));
                                                         }

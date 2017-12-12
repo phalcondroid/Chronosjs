@@ -1,13 +1,16 @@
-System.register([], function (exports_1, context_1) {
+System.register(["../Errors/Message"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var Validator;
+    var Message_1, Validator;
     return {
-        setters: [],
+        setters: [
+            function (Message_1_1) {
+                Message_1 = Message_1_1;
+            }
+        ],
         execute: function () {
             Validator = class Validator {
                 static validStructArray(data) {
-                    var message = Northwind.Errors.Message;
                     try {
                         if (Array.isArray(data)) {
                             var firstPosition = data[0];
@@ -15,11 +18,11 @@ System.register([], function (exports_1, context_1) {
                                 return true;
                             }
                             else {
-                                throw message.NOT_VALID_ARRAY_OBJECT;
+                                throw Message_1.Message.NOT_VALID_ARRAY_OBJECT;
                             }
                         }
                         else {
-                            throw message.NOT_VALID_ARRAY;
+                            throw Message_1.Message.NOT_VALID_ARRAY;
                         }
                     }
                     catch (e) {

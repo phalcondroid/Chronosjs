@@ -1,7 +1,7 @@
 System.register(["../../Url/Url", "../../Helper/Uuid", "../../Network/Ajax", "../../Persistence/EntityManager", "../../Mvc/View/Html/Dom/CssManager", "../../Mvc/View/Html/Dom/DomManager", "../../Mvc/View/Html/Dom/EventManager", "../../Mvc/View/Html/Dom/ParentManager", "../../Mvc/View/Html/Dom/ElementManager"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var Url_1, Uuid_1, Ajax_1, EntityManager_1, CssManager_1, DomManager_1, EventManager_1, ParentManager_1, ElementManager_1, InjectorComponents;
+    var Url_1, Uuid_1, Ajax_1, EntityManager_1, CssManager_1, DomManager_1, EventManager_1, ParentManager_1, ElementManager_1, InitializeComponents;
     return {
         setters: [
             function (Url_1_1) {
@@ -33,7 +33,7 @@ System.register(["../../Url/Url", "../../Helper/Uuid", "../../Network/Ajax", "..
             }
         ],
         execute: function () {
-            InjectorComponents = class InjectorComponents {
+            InitializeComponents = class InitializeComponents {
                 /**
                  *
                  * @param di
@@ -56,7 +56,7 @@ System.register(["../../Url/Url", "../../Helper/Uuid", "../../Network/Ajax", "..
                     this.di.set("url", new Url_1.Url);
                 }
             };
-            exports_1("InjectorComponents", InjectorComponents);
+            exports_1("InitializeComponents", InitializeComponents);
         }
     };
 });

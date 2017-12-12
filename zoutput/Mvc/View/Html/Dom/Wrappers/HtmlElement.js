@@ -1,9 +1,13 @@
-System.register([], function (exports_1, context_1) {
+System.register(["../../../../../Di/Injectable"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var HtmlElement;
+    var Injectable_1, HtmlElement;
     return {
-        setters: [],
+        setters: [
+            function (Injectable_1_1) {
+                Injectable_1 = Injectable_1_1;
+            }
+        ],
         execute: function () {
             HtmlElement = class HtmlElement {
                 /**
@@ -14,7 +18,9 @@ System.register([], function (exports_1, context_1) {
                     this.CSS_MANAGER = "Chronos.Dom.CssManager";
                     this.PARENT_MANAGER = "Chronos.Dom.DomManager";
                     this.ELEMENT_MANAGER = "Chronos.Dom.ElementManager";
-                    return new Proxy(this, this.getValidator());
+                    let localDecorator = new Proxy(this, this.getValidator());
+                    let injectable = new Injectable_1.Injectable();
+                    return injectable.inject(localDecorator);
                 }
                 initialize(args = {}) {
                 }
@@ -161,6 +167,14 @@ System.register([], function (exports_1, context_1) {
                                     return this.getParentManager().focus;
                                 case "submit":
                                     return this.getParentManager().submit;
+                                case "show":
+                                    return this.getCss().show;
+                                case "hide":
+                                    return this.getCss().hide;
+                                case "css":
+                                    return this.getCss().css;
+                                case "setStyle":
+                                    return this.getCss().setStyle;
                             }
                         }
                     };

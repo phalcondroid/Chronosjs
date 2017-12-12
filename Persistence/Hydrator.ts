@@ -1,12 +1,13 @@
 
-/// <reference path="../Reflection/Reflection.ts" />
-/// <reference path="../Mvc/Model/RawModel.ts" />
-/// <reference path="./UnitOfWork.ts" />
+import { Reflection } from "../Reflection/Reflection";
+import { UnitOfWork } from "./UnitOfWork";
+import { RawModel } from "../Mvc/Model/RawModel";
+
 
 export class Hydrator
 {
 
-    private reflector : Northwind.Reflection.Reflection;
+    private reflector : Reflection;
 
     public constructor()
     {
@@ -15,13 +16,13 @@ export class Hydrator
     public hydrate(model : any, data)
     {
         var newModel = new model();
-        newModel.state = Northwind.Persistence.UnitOfWork.CREATED;
+        newModel.state = UnitOfWork.CREATED;
 
         for (let key in data) {
             switch (typeof newModel[key]) {
                 case "function":
                     var auxPropNested = new newModel[key];
-                    if (auxPropNested instanceof Northwind.Mvc.RawModel) {
+                    if (auxPropNested instanceof RawModel) {
                         newModel[key] = this.hydrate(newModel[key], data[key]);
                     } else {
                         newModel[key] = data[key];
@@ -38,7 +39,7 @@ export class Hydrator
                                                 var auxSubModel = new newModel[key][0];
                                                 var arrayData   = new Array();
 
-                                                if (auxSubModel instanceof Northwind.Mvc.RawModel) {
+                                                if (auxSubModel instanceof RawModel) {
                                                     for (let subModelKey in data[key]) {
                                                         arrayData.push(
                                                             this.hydrate(newModel[key][0], data[key][subModelKey])

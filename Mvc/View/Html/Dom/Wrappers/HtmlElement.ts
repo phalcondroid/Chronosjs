@@ -5,6 +5,7 @@ import { ParentManager }    from "../ParentManager";
 import { ElementManager }   from "../ElementManager";
 import { ElementInterface } from "../ElementInterface";
 import { DependencyInjectorInterface } from "../../../../../Di/DependencyInjectorInterface";
+import { Injectable } from "../../../../../Di/Injectable";
 
 export class HtmlElement implements DependencyInjectorInterface, ElementInterface
 {
@@ -30,10 +31,12 @@ export class HtmlElement implements DependencyInjectorInterface, ElementInterfac
      */
     public constructor()
     {
-        return new Proxy(
+        let localDecorator = new Proxy(
             this,
             this.getValidator()
         );
+        let injectable = new Injectable();
+        return injectable.inject(localDecorator)
     }
 
     public initialize(args : any = {})
@@ -214,6 +217,14 @@ export class HtmlElement implements DependencyInjectorInterface, ElementInterfac
                         return this.getParentManager().focus;
                     case "submit":
                         return this.getParentManager().submit;
+                    case "show":
+                        return this.getCss().show;
+                    case "hide":
+                        return this.getCss().hide;
+                    case "css":
+                        return this.getCss().css;
+                    case "setStyle":
+                        return this.getCss().setStyle;
                 }
             }   
         };

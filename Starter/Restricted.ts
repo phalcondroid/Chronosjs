@@ -1,7 +1,7 @@
 
 export class Restricted
 {
-    public static get()
+    public static get() : any
     {
         let restricted = [
             "constructor",

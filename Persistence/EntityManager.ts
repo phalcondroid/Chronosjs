@@ -1,30 +1,35 @@
 
-/// <reference path="../Reflection/Reflection.ts" />
-/// <reference path="../Service/Container.ts" />
-/// <reference path="../Mvc/Model/StaticModel.ts" />
-/// <reference path="../Mvc/Model/AjaxModel.ts" />
-/// <reference path="../Network/Ajax.ts" />
-/// <reference path="./UnitOfWork.ts" />
-/// <reference path="./Hydrator.ts" />
-/// <reference path="./Filter.ts" />
+import { Filter } from "./Filter";
+import { Hydrator } from "./Hydrator";
+import { Ajax } from "../Network/Ajax";
+import { Service } from "../Di/Service";
+import { UnitOfWork } from "./UnitOfWork";
+import { Container } from "../Di/Container";
+import { RawModel } from "../Mvc/Model/RawModel";
+import { AjaxModel } from "../Mvc/Model/AjaxModel";
+import { Reflection } from "../Reflection/Reflection";
+import { StaticModel } from "../Mvc/Model/StaticModel";
+import { AjaxModelPersistent } from "../Mvc/Model/AjaxModelPersistent";
 
 export class EntityManager
 {
-    private container  = new Northwind.Service.Container();
-    uow                : Northwind.Persistence.UnitOfWork;
-    private ajax       : Northwind.Network.Ajax         = null;
-    private hydrator   : Northwind.Persistence.Hydrator = null;
+    uow                : UnitOfWork;
+    private di;
+    private ajax       : Ajax = null;
+    private hydrator   : Hydrator = null;
     private source     : string;
     private model      : Object;
     private fnResponse : Function;
     private resultSet  : any;
+    private container  = new Container();
 
     /**
      * Entity manager is a class
      */
     public constructor()
     {
-        this.uow = new Northwind.Persistence.UnitOfWork;
+        this.uow = new UnitOfWork;
+        this.di  = new Service; 
     }
 
     /**
@@ -102,14 +107,14 @@ export class EntityManager
             type
         );
 
-        if (objModel instanceof Northwind.Mvc.RawModel) {
-            var callAjax = false;
+        if (objModel instanceof RawModel) {
+            let callAjax = false;
             
-            if (objModel instanceof Northwind.Mvc.AjaxModelPersistent) {
+            if (objModel instanceof AjaxModelPersistent) {
                 if (objModel.getAjaxInit() === null) {
                     this.callAjax(objModel, type, params);
                 }
-            } else if (objModel instanceof Northwind.Mvc.AjaxModel) {
+            } else if (objModel instanceof AjaxModel) {
                 this.callAjax(objModel, type, params);
             }
         } else {
@@ -119,7 +124,7 @@ export class EntityManager
 
     private callAjax(objModel : any, type, params)
     {
-        this.ajax = new Network.Ajax();
+        this.ajax = new Ajax();
         var url = null;
         switch (type) {
             case "find":
@@ -196,12 +201,12 @@ export class EntityManager
                 "save"
             );
 
-        if (model instanceof Northwind.Mvc.AjaxModel) {
-            this.ajax = new Northwind.Network.Ajax();
+        if (model instanceof AjaxModel) {
+            this.ajax = new Ajax();
             var modelName = model.getClassName();
 
             switch (model.state) {
-                case Northwind.Persistence.UnitOfWork.NEW:
+                case UnitOfWork.NEW:
                         var url = model.getInsertUrl();
                         if (url == null) {
                             url = this.getDi().get("url").get("baseUrl") +
@@ -212,7 +217,7 @@ export class EntityManager
                             url
                         );
                     break;
-                case Northwind.Persistence.UnitOfWork.CREATED:
+                case UnitOfWork.CREATED:
                         var url = model.getUpdateUrl();
                         if (url == null) {
                             url = this.getDi().get("url").get("baseUrl") +
@@ -225,7 +230,7 @@ export class EntityManager
                     break;
             }
 
-            var reflection = new Northwind.Reflection.Reflection();
+            var reflection = new Reflection();
             var attrsAsString = JSON.stringify(
                 reflection.getAtttributeAsObjects(model)
             );
@@ -236,12 +241,12 @@ export class EntityManager
                 model.getMethod()
             );
 
-        } else if (model instanceof Northwind.Mvc.StaticModel) {
+        } else if (model instanceof StaticModel) {
             switch (model.state) {
-                case Northwind.Persistence.UnitOfWork.NEW:
+                case UnitOfWork.NEW:
                         let tempData = model.getData();
                     break;
-                case Northwind.Persistence.UnitOfWork.CREATED:
+                case UnitOfWork.CREATED:
 
                     break;
             }
@@ -273,8 +278,8 @@ export class EntityManager
                 "delete"
             );
 
-        if (model instanceof Northwind.Mvc.AjaxModel) {
-            this.ajax = new Network.Ajax();
+        if (model instanceof AjaxModel) {
+            this.ajax = new Ajax();
             var modelName = model.getClassName();
 
             var url = model.getDeleteUrl();
@@ -286,7 +291,7 @@ export class EntityManager
             this.ajax.setUrl(
                 url
             );
-            var reflection = new Northwind.Reflection.Reflection();
+            var reflection = new Reflection();
             var attrsAsString = JSON.stringify(
                 reflection.getAtttributeAsObjects(model)
             );
@@ -297,7 +302,7 @@ export class EntityManager
                 model.getMethod()
             );
 
-        } else if (model instanceof Northwind.Mvc.StaticModel) {
+        } else if (model instanceof StaticModel) {
             switch (model.state) {
                 case UnitOfWork.NEW:
                         let tempData = model.getData();
@@ -322,7 +327,7 @@ export class EntityManager
         var objModel  = this.getContainer()
             .get("transactionObjModel");
 
-        var type =  this.getContainer()
+        var type : any = this.getContainer()
             .get("transactionType");
 
         if (type == "save" || type == "delete") {
@@ -362,7 +367,7 @@ export class EntityManager
      */
     public checkModel(fn, type, model, objModel, params)
     {
-        if (objModel instanceof Northwind.Mvc.AjaxModelPersistent) {
+        if (objModel instanceof AjaxModelPersistent) {
             let data = objModel.getData();
             if (objModel.getAjaxInit() == null) {
                 this.setResponseAjax(
@@ -382,7 +387,7 @@ export class EntityManager
                 );
             }
         } else {
-            if (objModel instanceof Northwind.Mvc.AjaxModel) {
+            if (objModel instanceof AjaxModel) {
                 this.setResponseAjax(
                     fn,
                     type,
@@ -391,7 +396,7 @@ export class EntityManager
                     params
                 );
             } else {
-                if (objModel instanceof Northwind.Mvc.StaticModel) {
+                if (objModel instanceof StaticModel) {
                     this.setResponseStatic(
                         fn,
                         objModel,
@@ -482,7 +487,7 @@ export class EntityManager
         filters.buildCondition(params);
 
         var data = new Array();
-        if (objModel instanceof Northwind.Mvc.AjaxModelPersistent) {
+        if (objModel instanceof AjaxModelPersistent) {
             if (objModel.getAjaxInit() == null) {
                 objModel.setAjaxInit(true);
                 objModel.setData(response);
@@ -491,7 +496,7 @@ export class EntityManager
                 response,
                 false
             );
-        } else if (objModel instanceof Northwind.Mvc.AjaxModel) {
+        } else if (objModel instanceof AjaxModel) {
             data = filters.getMultipleRowValues(
                 response,
                 false
@@ -510,7 +515,7 @@ export class EntityManager
                 data[key]
             );
 
-            if (newModel instanceof Northwind.Mvc.StaticModel) {
+            if (newModel instanceof StaticModel) {
                 newModel.setIndex(i);
             }
 
@@ -597,63 +602,16 @@ export class EntityManager
         return (results && results.length > 1) ? results[1] : "";
     }
 
-    public getDom()
+    public setDi(di)
     {
-        return Northwind.Service.DependencyInjector.get().get(
-            "dom"
-        );
-    }
-
-    public getAjax()
-    {
-        return Northwind.Service.DependencyInjector.get().get(
-            "ajax"
-        );
-    }
-
-    public getEm()
-    {
-        return Northwind.Service.DependencyInjector.get().get(
-            "em"
-        );
+        this.di = di;
     }
 
     /**
      * 
-     * @param name 
      */
-    public getTag(tag : any)
-    {
-        return Northwind.Service.DependencyInjector.get().get("tag").tag(
-            tag
-        );
-    }
-
-    /**
-     *  
-     */
-    public getUrl()
-    {
-        let url = Northwind.Service.DependencyInjector.get().get(
-            "url"
-        );
-        return url;
-    }
-
-    /**
-     * 
-     * @param tag 
-     */
-    public getEvent(tag : any = false)
-    {
-        let events = Northwind.Service.DependencyInjector.get().get(
-            "event"
-        );
-        return events.tag(tag);
-    }
-
     public getDi()
     {
-        return Northwind.Service.DependencyInjector.get();
+        return this.di;
     }
 }
