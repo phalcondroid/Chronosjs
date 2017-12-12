@@ -6,11 +6,11 @@
         "sourceMap": false,
         "inlineSources": false,
         "experimentalDecorators": true,
-        "outDir": "./zoutput",
+        "out": "chronos.js",
         "rootDir": "."
     },
     "exclude": [
-        "./zoutput"
+        "./output"
     ],
     "filesGlob": [
         "./*.ts",

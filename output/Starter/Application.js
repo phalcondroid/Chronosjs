@@ -20,7 +20,8 @@ System.register(["./Starter", "../Di/Service", "./Injector/InitializeComponents"
                     /**
                      *
                      */
-                    constructor() {
+                    constructor(config) {
+                        this.config = config;
                         this.fetchDi();
                         window.onbeforeunload = function () {
                             sessionStorage.clear();
@@ -38,6 +39,7 @@ System.register(["./Starter", "../Di/Service", "./Injector/InitializeComponents"
                      */
                     start() {
                         let starter = new Starter_1.Starter;
+                        starter.setConfig(this.config);
                         starter.start();
                     }
                 }

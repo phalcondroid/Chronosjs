@@ -1,6 +1,7 @@
 import { Starter } from "./Starter";
 import { Service } from "../Di/Service";
 import { InitializeComponents } from "./Injector/InitializeComponents";
+import { ConfigInterface } from "../Config/ConfigInterface";
 
 export namespace Chronos
 {
@@ -9,8 +10,14 @@ export namespace Chronos
         /**
          * 
          */
-        public constructor()
+        private config : ConfigInterface;
+        
+        /**
+         * 
+         */
+        public constructor(config : ConfigInterface)
         {
+            this.config = config;
             this.fetchDi();
             window.onbeforeunload = function () {
                 sessionStorage.clear();
@@ -34,6 +41,7 @@ export namespace Chronos
         public start()
         {
             let starter = new Starter;
+            starter.setConfig(this.config);
             starter.start();
         }
     }
