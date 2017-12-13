@@ -80,7 +80,7 @@ export class Starter
      */
     public getConfig()
     {
-        return this.config;
+        return this.config.get();
     }
 
     /**
@@ -106,8 +106,8 @@ export class Starter
     private resolvePath()
     {
         let config = this.getConfig();
-        if (typeof config["url"] == "undefined") {
-            throw "Config: item url must be mandatory.";
+        if (typeof config["paths"] == "undefined") {
+            throw "Config: item paths must be mandatory.";
         }
         new ResolvePaths(
             config["paths"]

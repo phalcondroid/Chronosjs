@@ -6705,12 +6705,15 @@ System.register("Mvc/View/Html/Dom/Elements/Wbr", ["Di/Service", "Mvc/View/Html/
         }
     };
 });
-System.register("Mvc/View/Html/Dom/Adapter/ElementAdapter", ["Mvc/View/Html/Dom/Elements/A", "Mvc/View/Html/Dom/Elements/Abbr", "Mvc/View/Html/Dom/Elements/Address", "Mvc/View/Html/Dom/Elements/Area", "Mvc/View/Html/Dom/Elements/Article", "Mvc/View/Html/Dom/Elements/Aside", "Mvc/View/Html/Dom/Elements/B", "Mvc/View/Html/Dom/Elements/Base", "Mvc/View/Html/Dom/Elements/Bdi", "Mvc/View/Html/Dom/Elements/Bdo", "Mvc/View/Html/Dom/Elements/Blockquote", "Mvc/View/Html/Dom/Elements/Body", "Mvc/View/Html/Dom/Elements/Br", "Mvc/View/Html/Dom/Elements/Button", "Mvc/View/Html/Dom/Elements/Canvas", "Mvc/View/Html/Dom/Elements/Caption", "Mvc/View/Html/Dom/Elements/Cite", "Mvc/View/Html/Dom/Elements/Code", "Mvc/View/Html/Dom/Elements/Col", "Mvc/View/Html/Dom/Elements/ColGroup", "Mvc/View/Html/Dom/Elements/Datalist", "Mvc/View/Html/Dom/Elements/Db", "Mvc/View/Html/Dom/Elements/Del", "Mvc/View/Html/Dom/Elements/Details", "Mvc/View/Html/Dom/Elements/Dfn", "Mvc/View/Html/Dom/Elements/Dialog", "Mvc/View/Html/Dom/Elements/Div", "Mvc/View/Html/Dom/Elements/Dl", "Mvc/View/Html/Dom/Elements/Dt", "Mvc/View/Html/Dom/Elements/Em", "Mvc/View/Html/Dom/Elements/Embed", "Mvc/View/Html/Dom/Elements/Fieldset", "Mvc/View/Html/Dom/Elements/Figcaption", "Mvc/View/Html/Dom/Elements/Figure", "Mvc/View/Html/Dom/Elements/Footer", "Mvc/View/Html/Dom/Elements/Form", "Mvc/View/Html/Dom/Elements/H1", "Mvc/View/Html/Dom/Elements/H2", "Mvc/View/Html/Dom/Elements/H3", "Mvc/View/Html/Dom/Elements/H4", "Mvc/View/Html/Dom/Elements/H5", "Mvc/View/Html/Dom/Elements/H6", "Mvc/View/Html/Dom/Elements/Head", "Mvc/View/Html/Dom/Elements/Header", "Mvc/View/Html/Dom/Elements/I", "Mvc/View/Html/Dom/Elements/Iframe", "Mvc/View/Html/Dom/Elements/Img", "Mvc/View/Html/Dom/Elements/Input", "Mvc/View/Html/Dom/Elements/Ins", "Mvc/View/Html/Dom/Elements/Kbd", "Mvc/View/Html/Dom/Elements/Keygen", "Mvc/View/Html/Dom/Elements/Label", "Mvc/View/Html/Dom/Elements/Leyend", "Mvc/View/Html/Dom/Elements/Li", "Mvc/View/Html/Dom/Elements/Link", "Mvc/View/Html/Dom/Elements/Main", "Mvc/View/Html/Dom/Elements/Menu", "Mvc/View/Html/Dom/Elements/Menuitem", "Mvc/View/Html/Dom/Elements/Meta", "Mvc/View/Html/Dom/Elements/Meter", "Mvc/View/Html/Dom/Elements/Nav", "Mvc/View/Html/Dom/Elements/Noscrip", "Mvc/View/Html/Dom/Elements/Obj", "Mvc/View/Html/Dom/Elements/Ol", "Mvc/View/Html/Dom/Elements/Optgroup", "Mvc/View/Html/Dom/Elements/P", "Mvc/View/Html/Dom/Elements/Param", "Mvc/View/Html/Dom/Elements/Pre", "Mvc/View/Html/Dom/Elements/Progress", "Mvc/View/Html/Dom/Elements/Q", "Mvc/View/Html/Dom/Elements/Rp", "Mvc/View/Html/Dom/Elements/Rt", "Mvc/View/Html/Dom/Elements/Ruby", "Mvc/View/Html/Dom/Elements/S", "Mvc/View/Html/Dom/Elements/Samp", "Mvc/View/Html/Dom/Elements/Script", "Mvc/View/Html/Dom/Elements/Section", "Mvc/View/Html/Dom/Elements/Select", "Mvc/View/Html/Dom/Elements/Small", "Mvc/View/Html/Dom/Elements/Source", "Mvc/View/Html/Dom/Elements/Span", "Mvc/View/Html/Dom/Elements/Strong", "Mvc/View/Html/Dom/Elements/Style", "Mvc/View/Html/Dom/Elements/Sub", "Mvc/View/Html/Dom/Elements/Summary", "Mvc/View/Html/Dom/Elements/Sup", "Mvc/View/Html/Dom/Elements/Td", "Mvc/View/Html/Dom/Elements/Table", "Mvc/View/Html/Dom/Elements/Tbody", "Mvc/View/Html/Dom/Elements/Textarea", "Mvc/View/Html/Dom/Elements/Tfoot", "Mvc/View/Html/Dom/Elements/Th", "Mvc/View/Html/Dom/Elements/Thead", "Mvc/View/Html/Dom/Elements/Time", "Mvc/View/Html/Dom/Elements/Title", "Mvc/View/Html/Dom/Elements/Tr", "Mvc/View/Html/Dom/Elements/Track", "Mvc/View/Html/Dom/Elements/U", "Mvc/View/Html/Dom/Elements/Ul", "Mvc/View/Html/Dom/Elements/Var", "Mvc/View/Html/Dom/Elements/Video", "Mvc/View/Html/Dom/Elements/Wbr"], function (exports_155, context_155) {
+System.register("Mvc/View/Html/Dom/Adapter/ElementAdapter", ["Mvc/View/Html/Dom/Wrappers/HtmlElement", "Mvc/View/Html/Dom/Elements/A", "Mvc/View/Html/Dom/Elements/Abbr", "Mvc/View/Html/Dom/Elements/Address", "Mvc/View/Html/Dom/Elements/Area", "Mvc/View/Html/Dom/Elements/Article", "Mvc/View/Html/Dom/Elements/Aside", "Mvc/View/Html/Dom/Elements/B", "Mvc/View/Html/Dom/Elements/Base", "Mvc/View/Html/Dom/Elements/Bdi", "Mvc/View/Html/Dom/Elements/Bdo", "Mvc/View/Html/Dom/Elements/Blockquote", "Mvc/View/Html/Dom/Elements/Body", "Mvc/View/Html/Dom/Elements/Br", "Mvc/View/Html/Dom/Elements/Button", "Mvc/View/Html/Dom/Elements/Canvas", "Mvc/View/Html/Dom/Elements/Caption", "Mvc/View/Html/Dom/Elements/Cite", "Mvc/View/Html/Dom/Elements/Code", "Mvc/View/Html/Dom/Elements/Col", "Mvc/View/Html/Dom/Elements/ColGroup", "Mvc/View/Html/Dom/Elements/Datalist", "Mvc/View/Html/Dom/Elements/Db", "Mvc/View/Html/Dom/Elements/Del", "Mvc/View/Html/Dom/Elements/Details", "Mvc/View/Html/Dom/Elements/Dfn", "Mvc/View/Html/Dom/Elements/Dialog", "Mvc/View/Html/Dom/Elements/Div", "Mvc/View/Html/Dom/Elements/Dl", "Mvc/View/Html/Dom/Elements/Dt", "Mvc/View/Html/Dom/Elements/Em", "Mvc/View/Html/Dom/Elements/Embed", "Mvc/View/Html/Dom/Elements/Fieldset", "Mvc/View/Html/Dom/Elements/Figcaption", "Mvc/View/Html/Dom/Elements/Figure", "Mvc/View/Html/Dom/Elements/Footer", "Mvc/View/Html/Dom/Elements/Form", "Mvc/View/Html/Dom/Elements/H1", "Mvc/View/Html/Dom/Elements/H2", "Mvc/View/Html/Dom/Elements/H3", "Mvc/View/Html/Dom/Elements/H4", "Mvc/View/Html/Dom/Elements/H5", "Mvc/View/Html/Dom/Elements/H6", "Mvc/View/Html/Dom/Elements/Head", "Mvc/View/Html/Dom/Elements/Header", "Mvc/View/Html/Dom/Elements/I", "Mvc/View/Html/Dom/Elements/Iframe", "Mvc/View/Html/Dom/Elements/Img", "Mvc/View/Html/Dom/Elements/Input", "Mvc/View/Html/Dom/Elements/Ins", "Mvc/View/Html/Dom/Elements/Kbd", "Mvc/View/Html/Dom/Elements/Keygen", "Mvc/View/Html/Dom/Elements/Label", "Mvc/View/Html/Dom/Elements/Leyend", "Mvc/View/Html/Dom/Elements/Li", "Mvc/View/Html/Dom/Elements/Link", "Mvc/View/Html/Dom/Elements/Main", "Mvc/View/Html/Dom/Elements/Menu", "Mvc/View/Html/Dom/Elements/Menuitem", "Mvc/View/Html/Dom/Elements/Meta", "Mvc/View/Html/Dom/Elements/Meter", "Mvc/View/Html/Dom/Elements/Nav", "Mvc/View/Html/Dom/Elements/Noscrip", "Mvc/View/Html/Dom/Elements/Obj", "Mvc/View/Html/Dom/Elements/Ol", "Mvc/View/Html/Dom/Elements/Optgroup", "Mvc/View/Html/Dom/Elements/P", "Mvc/View/Html/Dom/Elements/Param", "Mvc/View/Html/Dom/Elements/Pre", "Mvc/View/Html/Dom/Elements/Progress", "Mvc/View/Html/Dom/Elements/Q", "Mvc/View/Html/Dom/Elements/Rp", "Mvc/View/Html/Dom/Elements/Rt", "Mvc/View/Html/Dom/Elements/Ruby", "Mvc/View/Html/Dom/Elements/S", "Mvc/View/Html/Dom/Elements/Samp", "Mvc/View/Html/Dom/Elements/Script", "Mvc/View/Html/Dom/Elements/Section", "Mvc/View/Html/Dom/Elements/Select", "Mvc/View/Html/Dom/Elements/Small", "Mvc/View/Html/Dom/Elements/Source", "Mvc/View/Html/Dom/Elements/Span", "Mvc/View/Html/Dom/Elements/Strong", "Mvc/View/Html/Dom/Elements/Style", "Mvc/View/Html/Dom/Elements/Sub", "Mvc/View/Html/Dom/Elements/Summary", "Mvc/View/Html/Dom/Elements/Sup", "Mvc/View/Html/Dom/Elements/Td", "Mvc/View/Html/Dom/Elements/Table", "Mvc/View/Html/Dom/Elements/Tbody", "Mvc/View/Html/Dom/Elements/Textarea", "Mvc/View/Html/Dom/Elements/Tfoot", "Mvc/View/Html/Dom/Elements/Th", "Mvc/View/Html/Dom/Elements/Thead", "Mvc/View/Html/Dom/Elements/Time", "Mvc/View/Html/Dom/Elements/Title", "Mvc/View/Html/Dom/Elements/Tr", "Mvc/View/Html/Dom/Elements/Track", "Mvc/View/Html/Dom/Elements/U", "Mvc/View/Html/Dom/Elements/Ul", "Mvc/View/Html/Dom/Elements/Var", "Mvc/View/Html/Dom/Elements/Video", "Mvc/View/Html/Dom/Elements/Wbr"], function (exports_155, context_155) {
     "use strict";
     var __moduleName = context_155 && context_155.id;
-    var A_1, Abbr_1, Address_1, Area_1, Article_1, Aside_1, B_1, Base_1, Bdi_1, Bdo_1, Blockquote_1, Body_1, Br_1, Button_1, Canvas_1, Caption_1, Cite_1, Code_1, Col_1, ColGroup_1, Datalist_1, Db_1, Del_1, Details_1, Dfn_1, Dialog_1, Div_1, Dl_1, Dt_1, Em_1, Embed_1, Fieldset_1, Figcaption_1, Figure_1, Footer_1, Form_1, H1_1, H2_1, H3_1, H4_1, H5_1, H6_1, Head_1, Header_1, I_3, Iframe_1, Img_1, Input_2, Ins_1, Kbd_1, Keygen_1, Label_1, Leyend_1, Li_1, Link_1, Main_1, Menu_1, Menuitem_1, Meta_1, Meter_1, Nav_1, Noscrip_1, Obj_1, Ol_1, Optgroup_1, P_1, Param_1, Pre_1, Progress_1, Q_1, Rp_1, Rt_1, Ruby_1, S_1, Samp_1, Script_1, Section_1, Select_1, Small_1, Source_1, Span_1, Strong_1, Style_1, Sub_1, Summary_1, Sup_1, Td_1, Table_1, Tbody_2, Textarea_1, Tfoot_2, Th_1, Thead_2, Time_1, Title_1, Tr_2, Track_1, U_1, Ul_1, Var_1, Video_1, Wbr_1, ElementAdapter;
+    var HtmlElement_103, A_1, Abbr_1, Address_1, Area_1, Article_1, Aside_1, B_1, Base_1, Bdi_1, Bdo_1, Blockquote_1, Body_1, Br_1, Button_1, Canvas_1, Caption_1, Cite_1, Code_1, Col_1, ColGroup_1, Datalist_1, Db_1, Del_1, Details_1, Dfn_1, Dialog_1, Div_1, Dl_1, Dt_1, Em_1, Embed_1, Fieldset_1, Figcaption_1, Figure_1, Footer_1, Form_1, H1_1, H2_1, H3_1, H4_1, H5_1, H6_1, Head_1, Header_1, I_3, Iframe_1, Img_1, Input_2, Ins_1, Kbd_1, Keygen_1, Label_1, Leyend_1, Li_1, Link_1, Main_1, Menu_1, Menuitem_1, Meta_1, Meter_1, Nav_1, Noscrip_1, Obj_1, Ol_1, Optgroup_1, P_1, Param_1, Pre_1, Progress_1, Q_1, Rp_1, Rt_1, Ruby_1, S_1, Samp_1, Script_1, Section_1, Select_1, Small_1, Source_1, Span_1, Strong_1, Style_1, Sub_1, Summary_1, Sup_1, Td_1, Table_1, Tbody_2, Textarea_1, Tfoot_2, Th_1, Thead_2, Time_1, Title_1, Tr_2, Track_1, U_1, Ul_1, Var_1, Video_1, Wbr_1, ElementAdapter;
     return {
         setters: [
+            function (HtmlElement_103_1) {
+                HtmlElement_103 = HtmlElement_103_1;
+            },
             function (A_1_1) {
                 A_1 = A_1_1;
             },
@@ -7022,28 +7025,42 @@ System.register("Mvc/View/Html/Dom/Adapter/ElementAdapter", ["Mvc/View/Html/Dom/
             ElementAdapter = class ElementAdapter {
                 /**
                  *
+                 * @param element
+                 * @param tagName
                  */
-                constructor(element, tagName = false) {
+                constructor(element) {
                     /**
                      *
                      */
                     this.element = false;
-                    if (typeof tagName == "string") {
-                        this.element = tagName;
-                    }
-                    else {
-                        this.element = element;
-                    }
+                    this.element = element;
+                }
+                /**
+                 *
+                 * @param element
+                 */
+                setElement(element) {
+                    this.element = element;
+                    return this;
                 }
                 /**
                  *
                  */
                 get() {
-                    if (!this.element || typeof this.element.nodeName != "undefined") {
-                        return false;
+                    let elem;
+                    if (typeof this.element != "string") {
+                        if (typeof this.element.nodeName == "undefined") {
+                            return false;
+                        }
+                        else {
+                            elem = this.element.nodeName;
+                        }
+                    }
+                    else {
+                        elem = this.element;
                     }
                     let instance = false;
-                    switch (this.element.nodeName) {
+                    switch (elem) {
                         case "A":
                             instance = new A_1.A();
                             break;
@@ -7357,10 +7374,13 @@ System.register("Mvc/View/Html/Dom/Adapter/ElementAdapter", ["Mvc/View/Html/Dom/
                             instance = new Wbr_1.Wbr();
                             break;
                         default:
-                            "";
+                            instance = new HtmlElement_103.HtmlElement;
+                            instance.create(this.element);
                             break;
                     }
-                    instance.setElement(this.element);
+                    if (typeof this.element.nodeName != "undefined") {
+                        instance.setElement(this.element);
+                    }
                     return instance;
                 }
             };
@@ -7484,11 +7504,11 @@ System.register("Mvc/View/Html/Dom/DomManager", ["Mvc/View/Html/Dom/Adapter/Elem
 System.register("Mvc/View/Html/Dom/Elements/Audio", ["Mvc/View/Html/Dom/Wrappers/HtmlElement", "Di/Service"], function (exports_157, context_157) {
     "use strict";
     var __moduleName = context_157 && context_157.id;
-    var HtmlElement_103, Service_105, Audio;
+    var HtmlElement_104, Service_105, Audio;
     return {
         setters: [
-            function (HtmlElement_103_1) {
-                HtmlElement_103 = HtmlElement_103_1;
+            function (HtmlElement_104_1) {
+                HtmlElement_104 = HtmlElement_104_1;
             },
             function (Service_105_1) {
                 Service_105 = Service_105_1;
@@ -7499,7 +7519,7 @@ System.register("Mvc/View/Html/Dom/Elements/Audio", ["Mvc/View/Html/Dom/Wrappers
              * [ViewElement description]
              * @type {[type]}
              */
-            Audio = class Audio extends HtmlElement_103.HtmlElement {
+            Audio = class Audio extends HtmlElement_104.HtmlElement {
                 /**
                  *
                  */
@@ -7547,14 +7567,14 @@ System.register("Mvc/View/Html/Dom/Elements/Hidden", ["Mvc/View/Html/Dom/Element
 System.register("Mvc/View/Html/Dom/Elements/Hr", ["Di/Service", "Mvc/View/Html/Dom/Wrappers/HtmlElement"], function (exports_159, context_159) {
     "use strict";
     var __moduleName = context_159 && context_159.id;
-    var Service_106, HtmlElement_104, Hr;
+    var Service_106, HtmlElement_105, Hr;
     return {
         setters: [
             function (Service_106_1) {
                 Service_106 = Service_106_1;
             },
-            function (HtmlElement_104_1) {
-                HtmlElement_104 = HtmlElement_104_1;
+            function (HtmlElement_105_1) {
+                HtmlElement_105 = HtmlElement_105_1;
             }
         ],
         execute: function () {
@@ -7562,7 +7582,7 @@ System.register("Mvc/View/Html/Dom/Elements/Hr", ["Di/Service", "Mvc/View/Html/D
              * [ViewElement description]
              * @type {[type]}
              */
-            Hr = class Hr extends HtmlElement_104.HtmlElement {
+            Hr = class Hr extends HtmlElement_105.HtmlElement {
                 /**
                  *
                  */
@@ -7580,14 +7600,14 @@ System.register("Mvc/View/Html/Dom/Elements/Hr", ["Di/Service", "Mvc/View/Html/D
 System.register("Mvc/View/Html/Dom/Elements/Map", ["Di/Service", "Mvc/View/Html/Dom/Wrappers/HtmlElement"], function (exports_160, context_160) {
     "use strict";
     var __moduleName = context_160 && context_160.id;
-    var Service_107, HtmlElement_105, Map;
+    var Service_107, HtmlElement_106, Map;
     return {
         setters: [
             function (Service_107_1) {
                 Service_107 = Service_107_1;
             },
-            function (HtmlElement_105_1) {
-                HtmlElement_105 = HtmlElement_105_1;
+            function (HtmlElement_106_1) {
+                HtmlElement_106 = HtmlElement_106_1;
             }
         ],
         execute: function () {
@@ -7595,7 +7615,7 @@ System.register("Mvc/View/Html/Dom/Elements/Map", ["Di/Service", "Mvc/View/Html/
              * [ViewElement description]
              * @type {[type]}
              */
-            Map = class Map extends HtmlElement_105.HtmlElement {
+            Map = class Map extends HtmlElement_106.HtmlElement {
                 /**
                  *
                  */
@@ -7613,14 +7633,14 @@ System.register("Mvc/View/Html/Dom/Elements/Map", ["Di/Service", "Mvc/View/Html/
 System.register("Mvc/View/Html/Dom/Elements/Output", ["Di/Service", "Mvc/View/Html/Dom/Wrappers/HtmlElement"], function (exports_161, context_161) {
     "use strict";
     var __moduleName = context_161 && context_161.id;
-    var Service_108, HtmlElement_106, Output;
+    var Service_108, HtmlElement_107, Output;
     return {
         setters: [
             function (Service_108_1) {
                 Service_108 = Service_108_1;
             },
-            function (HtmlElement_106_1) {
-                HtmlElement_106 = HtmlElement_106_1;
+            function (HtmlElement_107_1) {
+                HtmlElement_107 = HtmlElement_107_1;
             }
         ],
         execute: function () {
@@ -7628,7 +7648,7 @@ System.register("Mvc/View/Html/Dom/Elements/Output", ["Di/Service", "Mvc/View/Ht
              * [ViewElement description]
              * @type {[type]}
              */
-            Output = class Output extends HtmlElement_106.HtmlElement {
+            Output = class Output extends HtmlElement_107.HtmlElement {
                 /**
                  *
                  */
@@ -7875,9 +7895,29 @@ System.register("Persistence/ComparisonOperators", [], function (exports_164, co
         }
     };
 });
-System.register("Persistence/DataType", [], function (exports_165, context_165) {
+System.register("Persistence/DatamapperOperators", [], function (exports_165, context_165) {
     "use strict";
     var __moduleName = context_165 && context_165.id;
+    var DatamapperOperators;
+    return {
+        setters: [],
+        execute: function () {
+            DatamapperOperators = class DatamapperOperators {
+            };
+            DatamapperOperators.OR = "$or";
+            DatamapperOperators.AND = "$and";
+            DatamapperOperators.SORT = "$sort";
+            DatamapperOperators.IS_NOT = "$isNot";
+            DatamapperOperators.LIMIT = "$limit";
+            DatamapperOperators.COLUMNS = "$columns";
+            DatamapperOperators.CONDITIONAL = "$conditions";
+            exports_165("DatamapperOperators", DatamapperOperators);
+        }
+    };
+});
+System.register("Persistence/DataType", [], function (exports_166, context_166) {
+    "use strict";
+    var __moduleName = context_166 && context_166.id;
     var DataType;
     return {
         setters: [],
@@ -7906,27 +7946,7 @@ System.register("Persistence/DataType", [], function (exports_165, context_165) 
             DataType.INTEGER_TYPE = "number";
             DataType.STRING_TYPE = "string";
             DataType.OBJECT_TYPE = "object";
-            exports_165("DataType", DataType);
-        }
-    };
-});
-System.register("Persistence/DatamapperOperators", [], function (exports_166, context_166) {
-    "use strict";
-    var __moduleName = context_166 && context_166.id;
-    var DatamapperOperators;
-    return {
-        setters: [],
-        execute: function () {
-            DatamapperOperators = class DatamapperOperators {
-            };
-            DatamapperOperators.OR = "$or";
-            DatamapperOperators.AND = "$and";
-            DatamapperOperators.SORT = "$sort";
-            DatamapperOperators.IS_NOT = "$isNot";
-            DatamapperOperators.LIMIT = "$limit";
-            DatamapperOperators.COLUMNS = "$columns";
-            DatamapperOperators.CONDITIONAL = "$conditions";
-            exports_166("DatamapperOperators", DatamapperOperators);
+            exports_166("DataType", DataType);
         }
     };
 });
@@ -9184,7 +9204,7 @@ System.register("Starter/Starter", ["Environment/Scope", "Starter/ResolveControl
                  *
                  */
                 getConfig() {
-                    return this.config;
+                    return this.config.get();
                 }
                 /**
                  *
@@ -9204,8 +9224,8 @@ System.register("Starter/Starter", ["Environment/Scope", "Starter/ResolveControl
                  */
                 resolvePath() {
                     let config = this.getConfig();
-                    if (typeof config["url"] == "undefined") {
-                        throw "Config: item url must be mandatory.";
+                    if (typeof config["paths"] == "undefined") {
+                        throw "Config: item paths must be mandatory.";
                     }
                     new ResolvePaths_1.ResolvePaths(config["paths"]).resolve();
                 }

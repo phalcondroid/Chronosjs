@@ -110,27 +110,42 @@ export class ElementAdapter
     private element : any = false;
 
     /**
-     *
+     * 
+     * @param element 
+     * @param tagName 
      */
-    public constructor(element, tagName = false)
+    public constructor(element)
     {
-        if (typeof tagName == "string") {
-            this.element = tagName;
-        } else {
-            this.element = element;
-        }
+        this.element = element;   
     }
 
     /**
-     *
+     * 
+     * @param element 
+     */
+    public setElement(element : any)
+    {
+        this.element = element;
+        return this;
+    }
+
+    /**
+     * 
      */
     public get()
     {
-        if (!this.element || typeof this.element.nodeName != "undefined") {
-            return false;
+        let elem : any;
+        if (typeof this.element != "string") {
+            if (typeof this.element.nodeName == "undefined") {
+                return false;
+            } else {
+                elem = this.element.nodeName;
+            }
+        } else {
+            elem = this.element;
         }
         let instance : any = false;
-        switch (this.element.nodeName) {
+        switch (elem) {
             case "A":
                     instance = new A();
                 break;
@@ -444,10 +459,13 @@ export class ElementAdapter
                     instance = new Wbr();
                 break;
             default:
-                "";
+                instance = new HtmlElement;
+                instance.create(this.element);
                 break;
         }
-        instance.setElement(this.element);
+        if (typeof this.element.nodeName != "undefined") {
+            instance.setElement(this.element);
+        }
         return instance;
     }
 }
