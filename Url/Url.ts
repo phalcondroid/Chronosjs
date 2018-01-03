@@ -1,9 +1,15 @@
 
 
 import { Container } from "../Di/Container";
+import { Service } from "../Di/Service";
 
-export class Url extends Container
+export class Url extends Service
 {
+    public constructor()
+    {
+        super();
+    }
+
     /**
      * 
      * @param url 

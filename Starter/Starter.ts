@@ -2,6 +2,7 @@ import { Scope }             from "../Environment/Scope";
 import { ResolveController } from "./ResolveController";
 import { ResolvePaths } from "./ResolvePaths";
 import { ConfigInterface } from "../Config/ConfigInterface";
+import { ResolveService } from "./ResolveService";
 
 export class Starter
 {
@@ -121,7 +122,7 @@ export class Starter
     {
         let config = this.getConfig();
         if (typeof config["service"] != "undefined") {
-            new ResolveController(
+            new ResolveService(
                 config["service"]
             ).resolve();
         }
@@ -146,6 +147,7 @@ export class Starter
      */
     public start()
     {
+        console.log("Starter.start");
         this.resolvePath();
         this.resolveService();
         this.resolveControllers();

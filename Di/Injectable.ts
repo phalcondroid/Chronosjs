@@ -25,6 +25,7 @@ export class Injectable
                 }
             }
         }
+        return validator;
     }
 
     public getDi()

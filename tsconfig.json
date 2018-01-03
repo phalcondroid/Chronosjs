@@ -6,7 +6,7 @@
         "sourceMap": false,
         "inlineSources": false,
         "experimentalDecorators": true,
-        "outFile": "./chronos.js"
+        "outFile": "../Html/chronos.js"
         //"rootDir": "."
     },
     "exclude": [

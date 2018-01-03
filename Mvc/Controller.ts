@@ -1,7 +1,6 @@
 import { Service } from "../Di/Service";
 import { Injectable } from "../Di/Injectable";
 
-
 export class Controller
 {
     private di = new Service;
@@ -13,6 +12,11 @@ export class Controller
     {
         let injectable = new Injectable();
         return injectable.inject(this);
+    }
+
+    public initialize()
+    {
+        
     }
 
     /**

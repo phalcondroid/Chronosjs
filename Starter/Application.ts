@@ -3,46 +3,44 @@ import { Service } from "../Di/Service";
 import { InitializeComponents } from "./Injector/InitializeComponents";
 import { ConfigInterface } from "../Config/ConfigInterface";
 
-export namespace Chronos
+export class Application
 {
-    export class Application
+    /**
+     * 
+     */
+    private config : ConfigInterface;
+    
+    /**
+     * 
+     */
+    public constructor(config : ConfigInterface)
     {
-        /**
-         * 
-         */
-        private config : ConfigInterface;
-        
-        /**
-         * 
-         */
-        public constructor(config : ConfigInterface)
-        {
-            this.config = config;
-            this.fetchDi();
-            window.onbeforeunload = function () {
-                sessionStorage.clear();
-            }
+        this.config = config;
+        this.fetchDi();
+        window.onbeforeunload = function () {
+            sessionStorage.clear();
         }
+    }
 
-        /**
-         * 
-         */
-        private fetchDi()
-        {
-            let injector = new InitializeComponents(
-                new Service
-            );
-            injector.inject();
-        }
+    /**
+     * 
+     */
+    private fetchDi()
+    {
+        let injector = new InitializeComponents(
+            new Service
+        );
+        injector.inject();
+    }
 
-        /**
-         * 
-         */
-        public start()
-        {
-            let starter = new Starter;
-            starter.setConfig(this.config);
-            starter.start();
-        }
+    /**
+     * 
+     */
+    public start()
+    {
+        console.log("application start");
+        let starter = new Starter;
+        starter.setConfig(this.config);
+        starter.start();
     }
 }

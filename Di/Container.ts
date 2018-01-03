@@ -1,8 +1,9 @@
 import { InjectionAwareInterface } from "./InjectionAwareInterface";
 
-export class Container implements InjectionAwareInterface
+export class Container
 {
-    di;
+    private container;
+
     public constructor()
     {
 
@@ -15,7 +16,7 @@ export class Container implements InjectionAwareInterface
      */
     public set(key : string, value : any) : void
     {
-        this.di.set(key, value);
+        this.container[key] = value;
     }
 
     /**
@@ -24,6 +25,6 @@ export class Container implements InjectionAwareInterface
      */
     public get(key : string) : void
     {
-        return this.di.get(key);
+        return this.container[key];
     }
 }

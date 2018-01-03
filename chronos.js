@@ -9018,6 +9018,7 @@ System.register("Starter/ResolveController", ["Di/Service", "Starter/Restricted"
                  * @param key
                  */
                 resolveProperties(controller) {
+                    console.log("le controller", controller);
                     for (let key in controller) {
                         switch (typeof controller[key]) {
                             case "function":
@@ -9039,6 +9040,7 @@ System.register("Starter/ResolveController", ["Di/Service", "Starter/Restricted"
                  */
                 resolve() {
                     if (Array.isArray(this.controllers)) {
+                        console.log("reolve.controller");
                         for (let key in this.controllers) {
                             let instance = new this.controllers[key];
                             if (instance instanceof Controller_2.Controller) {
@@ -9141,10 +9143,43 @@ System.register("Starter/ResolvePaths", ["Di/Service"], function (exports_177, c
         }
     };
 });
-System.register("Starter/Starter", ["Environment/Scope", "Starter/ResolveController", "Starter/ResolvePaths"], function (exports_178, context_178) {
+System.register("Starter/ResolveService", ["Di/Di"], function (exports_178, context_178) {
     "use strict";
     var __moduleName = context_178 && context_178.id;
-    var Scope_2, ResolveController_1, ResolvePaths_1, Starter;
+    var Di_2, ResolveService;
+    return {
+        setters: [
+            function (Di_2_1) {
+                Di_2 = Di_2_1;
+            }
+        ],
+        execute: function () {
+            ResolveService = class ResolveService {
+                /**
+                 *
+                 */
+                constructor(service = false) {
+                    if (service == false) {
+                        throw "Config : Service must be a json object";
+                    }
+                    ;
+                    this.service = new service;
+                }
+                /**
+                 *
+                 */
+                resolve() {
+                    this.service.initialize(new Di_2.Di);
+                }
+            };
+            exports_178("ResolveService", ResolveService);
+        }
+    };
+});
+System.register("Starter/Starter", ["Environment/Scope", "Starter/ResolveController", "Starter/ResolvePaths", "Starter/ResolveService"], function (exports_179, context_179) {
+    "use strict";
+    var __moduleName = context_179 && context_179.id;
+    var Scope_2, ResolveController_1, ResolvePaths_1, ResolveService_1, Starter;
     return {
         setters: [
             function (Scope_2_1) {
@@ -9155,6 +9190,9 @@ System.register("Starter/Starter", ["Environment/Scope", "Starter/ResolveControl
             },
             function (ResolvePaths_1_1) {
                 ResolvePaths_1 = ResolvePaths_1_1;
+            },
+            function (ResolveService_1_1) {
+                ResolveService_1 = ResolveService_1_1;
             }
         ],
         execute: function () {
@@ -9235,7 +9273,7 @@ System.register("Starter/Starter", ["Environment/Scope", "Starter/ResolveControl
                 resolveService() {
                     let config = this.getConfig();
                     if (typeof config["service"] != "undefined") {
-                        new ResolveController_1.ResolveController(config["service"]).resolve();
+                        new ResolveService_1.ResolveService(config["service"]).resolve();
                     }
                 }
                 /**
@@ -9252,18 +9290,19 @@ System.register("Starter/Starter", ["Environment/Scope", "Starter/ResolveControl
                  *
                  */
                 start() {
+                    console.log("Starter.start");
                     this.resolvePath();
                     this.resolveService();
                     this.resolveControllers();
                 }
             };
-            exports_178("Starter", Starter);
+            exports_179("Starter", Starter);
         }
     };
 });
-System.register("Starter/Injector/InitializeComponents", ["Url/Url", "Helper/Uuid", "Network/Ajax", "Persistence/EntityManager", "Mvc/View/Html/Dom/CssManager", "Mvc/View/Html/Dom/DomManager", "Mvc/View/Html/Dom/EventManager", "Mvc/View/Html/Dom/ParentManager", "Mvc/View/Html/Dom/ElementManager"], function (exports_179, context_179) {
+System.register("Starter/Injector/InitializeComponents", ["Url/Url", "Helper/Uuid", "Network/Ajax", "Persistence/EntityManager", "Mvc/View/Html/Dom/CssManager", "Mvc/View/Html/Dom/DomManager", "Mvc/View/Html/Dom/EventManager", "Mvc/View/Html/Dom/ParentManager", "Mvc/View/Html/Dom/ElementManager"], function (exports_180, context_180) {
     "use strict";
-    var __moduleName = context_179 && context_179.id;
+    var __moduleName = context_180 && context_180.id;
     var Url_1, Uuid_2, Ajax_2, EntityManager_1, CssManager_1, DomManager_1, EventManager_1, ParentManager_1, ElementManager_1, InitializeComponents;
     return {
         setters: [
@@ -9319,14 +9358,14 @@ System.register("Starter/Injector/InitializeComponents", ["Url/Url", "Helper/Uui
                     this.di.set("url", new Url_1.Url);
                 }
             };
-            exports_179("InitializeComponents", InitializeComponents);
+            exports_180("InitializeComponents", InitializeComponents);
         }
     };
 });
-System.register("Starter/Application", ["Starter/Starter", "Di/Service", "Starter/Injector/InitializeComponents"], function (exports_180, context_180) {
+System.register("Starter/Application", ["Starter/Starter", "Di/Service", "Starter/Injector/InitializeComponents"], function (exports_181, context_181) {
     "use strict";
-    var __moduleName = context_180 && context_180.id;
-    var Starter_1, Service_112, InitializeComponents_1, Chronos;
+    var __moduleName = context_181 && context_181.id;
+    var Starter_1, Service_112, InitializeComponents_1, Application;
     return {
         setters: [
             function (Starter_1_1) {
@@ -9340,68 +9379,35 @@ System.register("Starter/Application", ["Starter/Starter", "Di/Service", "Starte
             }
         ],
         execute: function () {
-            (function (Chronos) {
-                class Application {
-                    /**
-                     *
-                     */
-                    constructor(config) {
-                        this.config = config;
-                        this.fetchDi();
-                        window.onbeforeunload = function () {
-                            sessionStorage.clear();
-                        };
-                    }
-                    /**
-                     *
-                     */
-                    fetchDi() {
-                        let injector = new InitializeComponents_1.InitializeComponents(new Service_112.Service);
-                        injector.inject();
-                    }
-                    /**
-                     *
-                     */
-                    start() {
-                        let starter = new Starter_1.Starter;
-                        starter.setConfig(this.config);
-                        starter.start();
-                    }
-                }
-                Chronos.Application = Application;
-            })(Chronos || (Chronos = {}));
-            exports_180("Chronos", Chronos);
-        }
-    };
-});
-System.register("Starter/ResolveService", ["Di/Service"], function (exports_181, context_181) {
-    "use strict";
-    var __moduleName = context_181 && context_181.id;
-    var Service_113, ResolveService;
-    return {
-        setters: [
-            function (Service_113_1) {
-                Service_113 = Service_113_1;
-            }
-        ],
-        execute: function () {
-            ResolveService = class ResolveService {
+            Application = class Application {
                 /**
                  *
                  */
-                constructor(service = false) {
-                    if (service == false) {
-                        throw "Config : Service must be a json object";
-                    }
-                    this.service = new service(new Service_113.Service);
+                constructor(config) {
+                    this.config = config;
+                    this.fetchDi();
+                    window.onbeforeunload = function () {
+                        sessionStorage.clear();
+                    };
                 }
                 /**
                  *
                  */
-                resolve() {
+                fetchDi() {
+                    let injector = new InitializeComponents_1.InitializeComponents(new Service_112.Service);
+                    injector.inject();
+                }
+                /**
+                 *
+                 */
+                start() {
+                    console.log("Application.start");
+                    let starter = new Starter_1.Starter;
+                    starter.setConfig(this.config);
+                    starter.start();
                 }
             };
-            exports_181("ResolveService", ResolveService);
+            exports_181("Application", Application);
         }
     };
 });

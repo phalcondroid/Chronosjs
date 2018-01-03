@@ -33,7 +33,14 @@ export class ResolveController
      */
     private resolveProperties(controller : Controller)
     {
-        for (let key in controller) {
+        let proto = Object.getPrototypeOf (controller);
+        let methodNames = Object.getOwnPropertyNames (proto);
+
+        let ja = Object.call(controller, "julian", "julian");
+
+        console.log(controller, ja);
+
+        for (let key of methodNames) {
             switch (typeof controller[key]) {
                 case "function":
                     if (!ArrayHelper.inArray(Restricted.get(), key)) {
@@ -56,6 +63,7 @@ export class ResolveController
     public resolve()
     {
         if (Array.isArray(this.controllers)) {
+            console.log("reolve.controller");
             for (let key in this.controllers) {
                 let instance = new this.controllers[key];
                 if (instance instanceof Controller) {
