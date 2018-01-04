@@ -147,7 +147,6 @@ export class Starter
      */
     public start()
     {
-        console.log("Starter.start");
         this.resolvePath();
         this.resolveService();
         this.resolveControllers();

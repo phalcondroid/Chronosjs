@@ -35,8 +35,7 @@ export class HtmlElement implements DependencyInjectorInterface, ElementInterfac
             this,
             this.getValidator()
         );
-        let injectable = new Injectable();
-        return injectable.inject(localDecorator)
+        return localDecorator;
     }
 
     public initialize(args : any = {})
@@ -225,6 +224,8 @@ export class HtmlElement implements DependencyInjectorInterface, ElementInterfac
                         return this.getCss().css;
                     case "setStyle":
                         return this.getCss().setStyle;
+                    default:
+                        return obj[name];
                 }
             }   
         };

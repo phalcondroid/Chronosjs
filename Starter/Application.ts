@@ -38,7 +38,6 @@ export class Application
      */
     public start()
     {
-        console.log("application start");
         let starter = new Starter;
         starter.setConfig(this.config);
         starter.start();

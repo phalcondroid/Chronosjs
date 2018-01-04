@@ -5,7 +5,7 @@ export class Injectable
     /**
      * 
      */
-    private getValidator() : any
+   private getValidator(resolveProperties : Function = null) : any
     {
         let validator = {
             get: function (target, name) {
@@ -22,6 +22,12 @@ export class Injectable
                         return this.getDi().get("uuid");
                     case "url":
                         return this.getDi().get("url");
+                    case "setViewModel":
+                        return target[name];
+                    case "getViewModel":
+                        return target[name];
+                    default:
+                        return target[name];
                 }
             }
         }
@@ -37,11 +43,11 @@ export class Injectable
      * 
      * @param obj 
      */
-    public inject(obj)
+    public inject(obj, fn : Function = null)
     {
         return new Proxy(
             obj,
-            this.getValidator()
+            this.getValidator(fn)
         );
     }
 }

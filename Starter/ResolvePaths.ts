@@ -29,9 +29,6 @@ export class ResolvePaths
      */
     public resolve()
     {
-        let r = new Reflection();
-        console.log("juju", r.read(this.di.get("url")));
-        console.log(this.paths, this.di.get("url"));
         for (let key in this.paths) {
             this.di.get("url").set(
                 key,

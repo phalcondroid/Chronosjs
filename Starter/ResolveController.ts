@@ -3,6 +3,7 @@ import { Service } from "../Di/Service";
 import { Restricted } from "./Restricted";
 import { Controller } from "../Mvc/Controller";
 import { ArrayHelper } from "../Helper/ArrayHelper";
+import { ViewModel } from "../Mvc/View/ViewModel";
 
 export class ResolveController
 {
@@ -31,26 +32,16 @@ export class ResolveController
      * @param controller 
      * @param key 
      */
-    private resolveProperties(controller : Controller)
+    public resolveProperties(controller)
     {
-        let proto = Object.getPrototypeOf (controller);
-        let methodNames = Object.getOwnPropertyNames (proto);
-
-        let ja = Object.call(controller, "julian", "julian");
-
-        console.log(controller, ja);
-
-        for (let key of methodNames) {
+        let methods = Object.getOwnPropertyNames(
+            Object.getPrototypeOf(controller)
+        );
+        for (let key of methods) {
             switch (typeof controller[key]) {
                 case "function":
                     if (!ArrayHelper.inArray(Restricted.get(), key)) {
-                        let component = this.di.get("dom").getById(key);
-                        if (component != false) {
-                            component.setDi(controller.getDi());
-                            if (component) {
-                                controller[key](component);
-                            }
-                        }
+                        controller[key](ViewModel);
                     }
                 break;
             }
@@ -63,9 +54,11 @@ export class ResolveController
     public resolve()
     {
         if (Array.isArray(this.controllers)) {
-            console.log("reolve.controller");
             for (let key in this.controllers) {
-                let instance = new this.controllers[key];
+                let instance = new this.controllers[key](
+                    this.resolveProperties
+                );
+                instance.initialize();
                 if (instance instanceof Controller) {
                     this.resolveProperties(instance);
                 }

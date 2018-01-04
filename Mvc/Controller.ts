@@ -5,18 +5,42 @@ export class Controller
 {
     private di = new Service;
 
+    private viewModel = {};
+
     /**
      * 
      */
-    public constructor(args = {})
+    public constructor(resolveProperties : Function = null)
     {
         let injectable = new Injectable();
-        return injectable.inject(this);
+        return injectable.inject(this, resolveProperties);
     }
 
+    /**
+     * 
+     */
     public initialize()
     {
         
+    }
+
+    /**
+     * 
+     * @param key 
+     * @param viewModel 
+     */
+    public setViewModel(viewModel)
+    {
+        this.viewModel = viewModel;
+    }
+
+    /**
+     * 
+     * @param key 
+     */
+    public getViewModel()
+    {
+        return this.viewModel;
     }
 
     /**

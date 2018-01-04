@@ -35,5 +35,6 @@ export class Restricted
             "setGlobals",
             "getGlobals"
         ];
+        return restricted;
     }
 }

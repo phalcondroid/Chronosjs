@@ -35,7 +35,6 @@ export class InitializeComponents
             "Chronos.Dom.CssManager",
             new CssManager
         );
-        console.log("Inject->", this.di);
         this.di.set(
             "Chronos.Dom.ParentManager",
             new ParentManager
