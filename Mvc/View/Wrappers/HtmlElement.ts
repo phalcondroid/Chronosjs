@@ -9,7 +9,8 @@ import { DependencyInjectorInterface } from "../../../Di/DependencyInjectorInter
 
 export class HtmlElement implements DependencyInjectorInterface, ElementInterface
 {
-    protected viewModel; 
+    [x: string]: any;
+    protected viewModelData; 
     private CSS_MANAGER     = "Chronos.Dom.CssManager";
     private PARENT_MANAGER  = "Chronos.Dom.DomManager";
     private ELEMENT_MANAGER = "Chronos.Dom.ElementManager"
@@ -46,17 +47,17 @@ export class HtmlElement implements DependencyInjectorInterface, ElementInterfac
      * 
      * @param viewModel 
      */
-    public setViewModel(viewModel)
+    public set(data)
     {
-        this.viewModel = viewModel;
+        this.viewModelData = data;
     }
 
     /**
      * 
      */
-    public getVienModel()
+    public get(key)
     {
-        return this.viewModel;
+        return this.viewModelData[key];
     }
 
     /**
@@ -241,7 +242,7 @@ export class HtmlElement implements DependencyInjectorInterface, ElementInterfac
                     case "setStyle":
                         return this.getCss().setStyle;
                     default:
-                        return obj[name];
+                        return obj[prop];
                 }
             }   
         };

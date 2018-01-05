@@ -4,7 +4,6 @@ import { Injectable } from "../Di/Injectable";
 export class Controller
 {
     private di = new Service;
-
     private viewModel = {};
 
     /**

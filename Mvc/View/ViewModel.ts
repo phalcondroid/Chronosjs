@@ -3,7 +3,7 @@ import { HtmlElement } from "./Wrappers/HtmlElement";
 
 export class ViewModel
 {
-    private views = [];
+    private views : any;
     private data = {};
 
     /**
@@ -12,26 +12,26 @@ export class ViewModel
      */
     public constructor()
     {
-        this.data = data;
-        if (typeof this.data == "object") {
-            throw "Data passed to view model must be an object with key, value"
-        }
-        let elements : any = this.getElements();
-        this.checkElements(elements);
     }
 
     /**
      * 
      * @param elements 
      */
-    private checkElements(elements)
+    private resolveViews()
     {
-        if (Array.isArray(elements)) {
-            for (let item of elements) {
-
+        if (Array.isArray(this.views.elements)) {
+            for (let item of this.views.elements) {
+                let instance = new item();
+                instance.set(this.data);
+                instance.initialize();
             }
         } else {
-
+            let instance = new this.views.elements;
+            if (instance instanceof HtmlElement) {
+                instance.set(this.data);
+                instance.initialize();
+            }
         }
     }
 
@@ -45,7 +45,11 @@ export class ViewModel
 
     public set(data)
     {
-
+        if (typeof this.data == "object") {
+            throw "Data passed to view model must be an object with key, value"
+        }
+        this.data = data;
+        this.resolveViews();
     }
 
     public setElements(views)
@@ -60,6 +64,6 @@ export class ViewModel
 
     public get(key)
     {
-        this.data[key];
+        return this.data[key];
     }
 }
