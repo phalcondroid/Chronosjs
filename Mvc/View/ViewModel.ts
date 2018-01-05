@@ -1,24 +1,61 @@
-import { Container } from "../../Di/Container";
+import { Container }   from "../../Di/Container";
+import { HtmlElement } from "./Wrappers/HtmlElement";
 
 export class ViewModel
 {
-    private static views = [];
+    private views = [];
     private data = {};
 
-    public constructor(data)
+    /**
+     * 
+     * @param data 
+     */
+    public constructor()
     {
         this.data = data;
-        console.log(data, ViewModel.getElements());
+        if (typeof this.data == "object") {
+            throw "Data passed to view model must be an object with key, value"
+        }
+        let elements : any = this.getElements();
+        this.checkElements(elements);
     }
 
-    public static setElements(views)
+    /**
+     * 
+     * @param elements 
+     */
+    private checkElements(elements)
     {
-        ViewModel.views = views;
+        if (Array.isArray(elements)) {
+            for (let item of elements) {
+
+            }
+        } else {
+
+        }
     }
 
-    public static getElements()
+    /**
+     * 
+     */
+    private initializeViews(view)
     {
-        return ViewModel.views;
+
+    }
+
+    public set(data)
+    {
+
+    }
+
+    public setElements(views)
+    {
+        this.views = views;
+    }
+
+    public getElements()
+    {
+        return this.views;
     }
 
     public get(key)

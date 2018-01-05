@@ -41,7 +41,12 @@ export class ResolveController
             switch (typeof controller[key]) {
                 case "function":
                     if (!ArrayHelper.inArray(Restricted.get(), key)) {
-                        controller[key](ViewModel);
+                        let ifExist = document.getElementById(key);
+                        if (ifExist != null) {
+                            if (typeof ifExist.nodeType != "undefined") {
+                                controller[key](ViewModel);
+                            }
+                        }
                     }
                 break;
             }
