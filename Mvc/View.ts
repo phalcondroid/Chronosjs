@@ -7,7 +7,7 @@
 function View(obj)
 {
     return (target: any, key: string, descriptor: any) => {
-        var originalMethod = descriptor.value; 
+        var originalMethod = descriptor.value;
         descriptor.value = function (...args: any[]) {
             let viewModel = args[0];
             viewModel.setElements(obj.elements);

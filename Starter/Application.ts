@@ -1,5 +1,6 @@
+
+import { Di } from "../Di/Di";
 import { Starter } from "./Starter";
-import { Service } from "../Di/Service";
 import { InitializeComponents } from "./Injector/InitializeComponents";
 import { ConfigInterface } from "../Config/ConfigInterface";
 
@@ -27,9 +28,7 @@ export class Application
      */
     private fetchDi()
     {
-        let injector = new InitializeComponents(
-            new Service
-        );
+        let injector = new InitializeComponents();
         injector.inject();
     }
 
@@ -38,6 +37,8 @@ export class Application
      */
     public start()
     {
+        console.log("jajiajsksaj");
+        this.fetchDi();
         let starter = new Starter;
         starter.setConfig(this.config);
         starter.start();

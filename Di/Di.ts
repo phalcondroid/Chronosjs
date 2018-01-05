@@ -19,6 +19,7 @@ export class Di
         if (key == "" || typeof key == "undefined" || value == "" || typeof value == "undefined") {
             throw "Key and value must not be empty in \"Di\"";
         }
+        console.log("add di", key);
         Di.di[key] = value;
     }
 
@@ -33,5 +34,13 @@ export class Di
             throw "Key must not be empty in \"Di\"";
         }
         return Di.di[key];
+    }
+
+    /**
+     * 
+     */
+    public static getAll()
+    {
+        return Di.di;
     }
 }

@@ -20,32 +20,24 @@ export class ViewModel
      */
     private resolveViews()
     {
-        if (Array.isArray(this.views.elements)) {
-            for (let item of this.views.elements) {
-                let instance = new item();
+        if (Array.isArray(this.views)) {
+            for (let instance of this.views) {
                 instance.set(this.data);
                 instance.initialize();
             }
         } else {
-            let instance = new this.views.elements;
-            if (instance instanceof HtmlElement) {
-                instance.set(this.data);
-                instance.initialize();
+            console.log(this.views, this.views instanceof HtmlElement);
+            if (this.views instanceof HtmlElement) {
+                console.log("2", this.data);
+                this.views.set(this.data);
+                this.views.initialize();
             }
         }
     }
 
-    /**
-     * 
-     */
-    private initializeViews(view)
-    {
-
-    }
-
     public set(data)
     {
-        if (typeof this.data == "object") {
+        if (typeof data != "object") {
             throw "Data passed to view model must be an object with key, value"
         }
         this.data = data;

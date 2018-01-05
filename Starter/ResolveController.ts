@@ -1,5 +1,5 @@
 
-import { Service } from "../Di/Service";
+import { Di } from "../Di/Di";
 import { Restricted } from "./Restricted";
 import { Controller } from "../Mvc/Controller";
 import { ArrayHelper } from "../Helper/ArrayHelper";
@@ -24,7 +24,6 @@ export class ResolveController
     public constructor(controllers)
     {
         this.controllers = controllers;
-        this.di = new Service;
     }
 
     /**
@@ -44,7 +43,7 @@ export class ResolveController
                         let ifExist = document.getElementById(key);
                         if (ifExist != null) {
                             if (typeof ifExist.nodeType != "undefined") {
-                                controller[key](ViewModel);
+                                controller[key](new ViewModel);
                             }
                         }
                     }
@@ -58,6 +57,7 @@ export class ResolveController
      */
     public resolve()
     {
+        console.log("resolve", Di);
         if (Array.isArray(this.controllers)) {
             for (let key in this.controllers) {
                 let instance = new this.controllers[key](

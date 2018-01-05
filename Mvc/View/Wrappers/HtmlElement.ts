@@ -1,4 +1,5 @@
 
+import { Di } from "../../../Di/Di";
 import { CssManager }       from "../Dom/CssManager";
 import { EventManager }     from "../Dom/EventManager";
 import { ParentManager }    from "../Dom/ParentManager";
@@ -49,6 +50,7 @@ export class HtmlElement implements DependencyInjectorInterface, ElementInterfac
      */
     public set(data)
     {
+        console.log(this.viewModelData, data);
         this.viewModelData = data;
     }
 
@@ -94,9 +96,10 @@ export class HtmlElement implements DependencyInjectorInterface, ElementInterfac
      */
     private getElementManager() : ElementManager
     {
-        let em = this.getDi().get(
+        let em = Di.get(
             this.ELEMENT_MANAGER
         );
+        console.log(Di.getAll(), em, this.getElement());
         em.setElement(this.getElement());
         return em;
     }
@@ -244,7 +247,7 @@ export class HtmlElement implements DependencyInjectorInterface, ElementInterfac
                     default:
                         return obj[prop];
                 }
-            }   
+            }.bind(this)
         };
         return validator;
     }

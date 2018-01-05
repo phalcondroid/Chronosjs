@@ -1,4 +1,5 @@
 
+import { Di }   from "../../Di/Di";
 import { Url }  from "../../Url/Url";
 import { Uuid } from "../../Helper/Uuid";
 import { Ajax } from "../../Network/Ajax";
@@ -21,9 +22,9 @@ export class InitializeComponents
      * 
      * @param di 
      */
-    public constructor(di : InjectionAwareInterface)
+    public constructor()
     {
-        this.di = di;
+        console.log("jajaja inject");
     }
 
     /**
@@ -31,39 +32,40 @@ export class InitializeComponents
      */
     public inject()
     {
-        this.di.set(
+        console.log("thing");
+        Di.set(
             "Chronos.Dom.CssManager",
             new CssManager
         );
-        this.di.set(
+        Di.set(
             "Chronos.Dom.ParentManager",
             new ParentManager
         );
-        this.di.set(
+        Di.set(
             "Chronos.Dom.ElementManager",
             new ElementManager
         );
-        this.di.set(
+        Di.set(
             "dom",
             new DomManager
         );
-        this.di.set(
+        Di.set(
             "eventManager",
             new EventManager
         );
-        this.di.set(
+        Di.set(
             "ajax",
             new Ajax
         );
-        this.di.set(
+        Di.set(
             "em",
             new EntityManager
         );
-        this.di.set(
+        Di.set(
             "uuid",
             new Uuid
         );
-        this.di.set(
+        Di.set(
             "url",
             new Url
         );
